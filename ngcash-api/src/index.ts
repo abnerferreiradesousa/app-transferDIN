@@ -1,7 +1,7 @@
 import express from "express";
 require('express-async-errors');
 import { AppDataSource } from "./data-source";
-import errorHandler from "./middlewares/ErrorHandler";
+import { errorHandler } from "./helpers/Middlewares";
 import routes from "./routes";
 
 AppDataSource.initialize().then(() => {
