@@ -4,7 +4,7 @@ import { errorMessage } from "../helpers/Middlewares";
 import { StatusCodes } from 'http-status-codes';
 import generateJWT from "../helpers/GenerateJWT";
 import { Account } from "../entities/Account";
-import { UserLogin } from "../interfaces";
+import { SimpleUser, UserLogin } from "../interfaces";
 import { hash } from "bcrypt";
 
 export class UserRepository {
@@ -13,7 +13,7 @@ export class UserRepository {
     private userRepository = AppDataSource.getRepository(User);
     private accountRepository = AppDataSource.getRepository(Account);
 
-    public create = async (user: UserLogin): Promise<User> => {
+    public create = async (user: SimpleUser): Promise<User> => {
         const passwordHash = await hash(user.password, this.COMPLEXITY_ENCRYT);
 
         const newUser = this.userRepository.create({ ...user, password: passwordHash });
@@ -38,7 +38,7 @@ export class UserRepository {
         if(isUser == null || isUser.password != user.password) {
             throw errorMessage(StatusCodes.NOT_FOUND, "User not found!")
         }
-        const {password, ...restData} = isUser;
+        const { password, ...restData} = isUser;
 
         return generateJWT(restData)
     }

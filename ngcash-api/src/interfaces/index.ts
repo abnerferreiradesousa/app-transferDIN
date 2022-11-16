@@ -10,3 +10,11 @@ export interface MyRequest extends Request {
 }
 
 export type UserLogin = Pick<User, 'username' | 'password'>
+
+export type SimpleUser = {
+  username: string,
+  password: string,
+  account: {
+    balance: number
+  }
+}

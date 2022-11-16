@@ -8,7 +8,7 @@ export class UserController {
 
     public create = async (req: Request, res: Response) => {
         const user = await this.userService.create(req.body)
-        return res.status(StatusCodes.CREATED).json({user})
+        return res.status(StatusCodes.CREATED).json({ user })
     }
 
     public login = async (req: Request, res: Response) => {

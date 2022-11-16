@@ -13,6 +13,6 @@ export class User {
     password: string
 
     @OneToOne(() => Account, account => account.user, { cascade: true, eager: true })
-    @JoinColumn({name: 'accountId'})
+    @JoinColumn({ name: 'accountId' })
     account: Account
 }
