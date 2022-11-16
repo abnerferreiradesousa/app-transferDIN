@@ -1,8 +1,5 @@
 import { AppDataSource } from "../data-source";
-import { User } from "../entities/User";
 import { Account } from "../entities/Account";
-
-export type UserLogin = Pick<User, 'username' | 'password'>
 
 export class AccountRepository {
 
@@ -10,5 +7,19 @@ export class AccountRepository {
 
     public findBalanceByUserLogged = async (id: number): Promise<Account> => {
         return await this.accountRepository.findOne({ where: { id } }) as Account;
+    }
+
+    public incrementBalance = async (id: number, value: number) => {
+        await this.accountRepository.increment({ id }, 'balance', value)
+        const accountUpdated = await this.accountRepository.findOne({where: { id }})
+        console.log(accountUpdated)
+        return accountUpdated;
+    }
+
+    public decrementBalance = async (id: number, value: number) => {
+        await this.accountRepository.decrement({ id }, 'balance', value)
+        const accountUpdated = await this.accountRepository.findOne({where: { id }})
+        console.log(accountUpdated)
+        return accountUpdated;
     }
 }

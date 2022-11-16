@@ -19,3 +19,14 @@ export type SimpleUser = {
     balance: number
   }
 }
+
+export type TransferData = {
+  usernameCredited: string,
+  value: number
+}
+
+export type TransactionData = {
+  value: number,
+  debitedAccountId?: number,
+  creditedAccountId?: number,
+}

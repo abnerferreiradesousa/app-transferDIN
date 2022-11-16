@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { AccountController } from './controllers/AccountController';
+import { TransactionController } from './controllers/TransactionController';
 import { UserController } from './controllers/UserController';
 import { authToken } from './helpers/middlewares';
 
@@ -8,6 +9,9 @@ const routes = Router();
 routes.post('/user', new UserController().create);
 routes.post('/login', new UserController().login);
 
-routes.get('/account', authToken, new AccountController().findBalanceByUserLogged);
+routes.use(authToken)
+
+routes.get('/account', new AccountController().findBalanceByUserLogged);
+routes.post('/transaction', new TransactionController().transfer);
 
 export default routes;

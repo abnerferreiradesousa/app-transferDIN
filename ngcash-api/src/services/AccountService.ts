@@ -9,8 +9,6 @@ export class AccountService {
 
     public findBalanceByUserLogged = async (user: UserJWT): Promise<Account> => {
         const account = await this.accountRepository.findBalanceByUserLogged(user.id);
-        console.log(account);
-
         return account;
     }
 }

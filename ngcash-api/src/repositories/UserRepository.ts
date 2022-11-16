@@ -1,11 +1,6 @@
 import { AppDataSource } from "../data-source";
 import { User } from "../entities/User";
-import { errorMessage } from "../helpers/middlewares";
-import { StatusCodes } from 'http-status-codes';
-import generateJWT from "../helpers/generateJWT";
-import { Account } from "../entities/Account";
-import { SimpleUser, UserLogin } from "../interfaces";
-import { compareHash, generateHash } from "../helpers/passwordHash";
+import { SimpleUser } from "../interfaces";
 
 export class UserRepository {
 
