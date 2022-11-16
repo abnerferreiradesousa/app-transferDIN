@@ -14,8 +14,9 @@ export class UserRepository {
     private accountRepository = AppDataSource.getRepository(Account);
 
     public create = async (user: UserLogin): Promise<User> => {
+        const passwordHash = await hash(user.password, this.COMPLEXITY_ENCRYT);
 
-        const newUser = this.userRepository.create(user);
+        const newUser = this.userRepository.create({ ...user, password: passwordHash });
         await this.userRepository.save(newUser);
 
         return await this.findByUsername(newUser.username);
