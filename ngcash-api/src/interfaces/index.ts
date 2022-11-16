@@ -8,3 +8,5 @@ export interface IErrorHandler extends Error {
 export interface MyRequest extends Request {
   user?: User
 }
+
+export type UserLogin = Pick<User, 'username' | 'password'>

@@ -1,14 +1,19 @@
 import { Request, Response } from "express";
-import { UserRepository } from "../repositories/UserRepository";
+import { StatusCodes } from 'http-status-codes';
+import { UserService } from "../services/UserService";
 
 export class UserController {
     
-    private userRepository = new UserRepository();
+    private userService = new UserService();
 
-    public create = async (request: Request, response: Response) => {
-        const user = this.userRepository.create(request.body)
-        return response.json({user})
+    public create = async (req: Request, res: Response) => {
+        const user = await this.userService.create(req.body)
+        return res.status(StatusCodes.CREATED).json({user})
     }
 
+    public login = async (req: Request, res: Response) => {
+        const token = this.userService.login(req.body)
+        return res.status(StatusCodes.OK).json({ token })
+    }
     
 }

@@ -43,5 +43,6 @@ const authToken = (req: MyRequest, res: Response, next: NextFunction) => {
 
 export {
   errorHandler,
-  authToken
+  authToken,
+  errorMessage
 };
