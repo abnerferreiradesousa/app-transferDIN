@@ -9,12 +9,7 @@ const errorMessage = (status: number, message: string): IErrorHandler => ({
   message,
 });
 
-const errorHandler = (
-  err: IErrorHandler,
-  _req: Request,
-  res: Response,
-  _next: NextFunction,
-) => {
+function errorHandler (err: IErrorHandler, _req: Request, res: Response, _next: NextFunction) {
   if (err.status) {
     return res.status(err.status).json({ message: err.message });
   }

@@ -12,7 +12,7 @@ export class User {
     @Column({ type: 'text' })
     password: string
 
-    @OneToOne(() => Account, account => account.user, { cascade: true, eager: true })
+    @OneToOne(() => Account, account => account.user, { cascade: true, eager: true , onDelete: "CASCADE"})
     @JoinColumn({ name: 'accountId' })
     account: Account
 }

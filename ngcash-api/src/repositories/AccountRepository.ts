@@ -8,9 +8,7 @@ export class AccountRepository {
 
     private accountRepository = AppDataSource.getRepository(Account);
 
-    public create = async (account: Account) => {
-        const newAccount = this.accountRepository.create(account)
-        await this.accountRepository.save(newAccount)
-        return await this.accountRepository.findOneBy(newAccount);
+    public findBalanceByUserLogged = async (id: number): Promise<Account> => {
+        return await this.accountRepository.findOne({ where: { id } }) as Account;
     }
 }
