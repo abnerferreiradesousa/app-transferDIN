@@ -5,16 +5,15 @@ import { StatusCodes } from 'http-status-codes';
 import generateJWT from "../helpers/GenerateJWT";
 import { Account } from "../entities/Account";
 import { SimpleUser, UserLogin } from "../interfaces";
-import { hash } from "bcrypt";
+import { compareHash, generateHash } from "../helpers/passwordHash";
 
 export class UserRepository {
 
-    private COMPLEXITY_ENCRYT = 8;
     private userRepository = AppDataSource.getRepository(User);
     private accountRepository = AppDataSource.getRepository(Account);
 
     public create = async (user: SimpleUser): Promise<User> => {
-        const passwordHash = await hash(user.password, this.COMPLEXITY_ENCRYT);
+        const passwordHash = await generateHash(user.password);
 
         const newUser = this.userRepository.create({ ...user, password: passwordHash });
         await this.userRepository.save(newUser);
@@ -31,15 +30,13 @@ export class UserRepository {
     }
 
     public login = async (user: UserLogin): Promise<string> => {
-        const isUser = this.userRepository.findOne(
-            { where: { username: user.username } }
-        ) as unknown as User;
+        const isUser = await this.findByUsername(user.username);
+        const isSamePassword = await compareHash(user.password, isUser.password);
 
-        if(isUser == null || isUser.password != user.password) {
+        if(isUser == null || !isSamePassword) {
             throw errorMessage(StatusCodes.NOT_FOUND, "User not found!")
         }
         const { password, ...restData} = isUser;
-
         return generateJWT(restData)
     }
 }

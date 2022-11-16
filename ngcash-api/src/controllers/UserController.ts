@@ -12,7 +12,7 @@ export class UserController {
     }
 
     public login = async (req: Request, res: Response) => {
-        const token = this.userService.login(req.body)
+        const token = await this.userService.login(req.body)
         return res.status(StatusCodes.OK).json({ token })
     }
     

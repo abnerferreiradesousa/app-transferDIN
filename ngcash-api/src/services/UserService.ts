@@ -24,7 +24,7 @@ export class UserService {
 
         const hasEqualUser = await this.userRepository.findByUsername(user.username)
         if(hasEqualUser !== null) {
-            throw errorMessage(StatusCodes.CONFLICT, "Username already exists")
+            throw errorMessage(StatusCodes.CONFLICT, "Username already exists!")
         }
         
         user.account = { balance: 100 }
@@ -33,7 +33,7 @@ export class UserService {
     }
 
     public login = async (user: UserLogin): Promise<string> => {
-        const token = this.userRepository.login(user)
+        const token = await this.userRepository.login(user)
         return token;
     }
 }
