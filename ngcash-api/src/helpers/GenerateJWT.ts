@@ -5,9 +5,9 @@ export type UserJWT = Omit<User, 'password'>
 
 const generateJWT = (payload: UserJWT): string => {
   const token = jwt.sign(
-    { data: payload, exp: '1d' }, 
+    { data: payload }, 
     process.env.JWT_SECRET = 'hulkEsmaga', 
-    {});
+    {expiresIn: '1d'});
   return token;
 };
 
