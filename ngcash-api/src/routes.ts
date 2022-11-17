@@ -13,5 +13,6 @@ routes.use(authToken)
 
 routes.get('/account', new AccountController().findBalanceByUserLogged);
 routes.post('/transaction', new TransactionController().transfer);
+routes.get('/transaction', new TransactionController().findTransactionsByUser);
 
 export default routes;
