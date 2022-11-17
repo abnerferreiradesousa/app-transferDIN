@@ -8,7 +8,7 @@ export class TransactionRepository {
 
     public transfer = async (transaction: TransactionData) => {
         const transactionObj = this.transactionRepository.create(transaction);
-        const result = await this.transactionRepository.save(transactionObj)
-        console.log(result)
+        const transactionInserted = await this.transactionRepository.save(transactionObj)
+        return transactionInserted;
     }
 }

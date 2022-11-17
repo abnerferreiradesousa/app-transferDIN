@@ -12,14 +12,12 @@ export class AccountRepository {
     public incrementBalance = async (id: number, value: number) => {
         await this.accountRepository.increment({ id }, 'balance', value)
         const accountUpdated = await this.accountRepository.findOne({where: { id }})
-        console.log(accountUpdated)
         return accountUpdated;
     }
 
     public decrementBalance = async (id: number, value: number) => {
         await this.accountRepository.decrement({ id }, 'balance', value)
         const accountUpdated = await this.accountRepository.findOne({where: { id }})
-        console.log(accountUpdated)
         return accountUpdated;
     }
 }
