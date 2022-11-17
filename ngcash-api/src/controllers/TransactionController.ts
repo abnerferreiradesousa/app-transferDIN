@@ -22,9 +22,23 @@ export class TransactionController {
         return res.status(StatusCodes.OK).json({ transactions })
     }
 
-    public findTransactionsByDateOrAndType = async (req: MyRequest, res: Response) => {
+    public findTransactionsByDate = async (req: MyRequest, res: Response) => {
         const transactions = await this
-            .transactionService.findTransactionsByDateOrAndType(req.user as UserJWT, req.body)
+            .transactionService.findTransactionsByDate(req.user as UserJWT, req.body)
+            
+        return res.status(StatusCodes.OK).json({ transactions })
+    }
+
+    public findTransactionsByCashIn = async (req: MyRequest, res: Response) => {
+        const transactions = await this
+            .transactionService.findTransactionsByCashIn(req.user as UserJWT, req.body)
+            
+        return res.status(StatusCodes.OK).json({ transactions })
+    }
+
+    public findTransactionsByCashOut = async (req: MyRequest, res: Response) => {
+        const transactions = await this
+            .transactionService.findTransactionsByCashOut(req.user as UserJWT, req.body)
             
         return res.status(StatusCodes.OK).json({ transactions })
     }

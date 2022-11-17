@@ -20,48 +20,55 @@ export class TransactionRepository {
         return transactions;
     }
 
-
-
-    // Filtragem pelo tempo...
     public findByDate = async (id: number, dates: FilterInfo) => {
-        const transactions = await this.findTransactionsByUser(id);
+        const transactions = await this.transactionRepository
+            .createQueryBuilder('t')
+            .where('t.debitedAccountId = :id', {id})
+            .orWhere('t.creditedAccountId = :id', {id})
+            .andWhere('t.createdAt > :startDate', {startDate: new Date(dates.dataStart)})
+            .andWhere('t.createdAt < :endDate', {endDate: new Date(dates.dataEnd)})
+            .getMany();
 
-        return this.filterByDateAfter(transactions, dates);
+        return transactions;
     }
 
-    // Filtragem por cashout...
     public findByCashOut = async (id: number, dates: FilterInfo) => {
-        let transactions = await this.transactionRepository.find({ where: [
-            {debitedAccountId: id},
-        ] })
+        let transactions = [];
 
-        if(dates.dataStart !== null && dates.dataEnd !== null) {
-            transactions = this.filterByDateAfter(transactions, dates);
+        if(dates.dataStart !== null || dates.dataEnd !== null) {
+            transactions = await this.transactionRepository
+            .createQueryBuilder('t')
+            .where('t.debitedAccountId = :id', {id})
+            .andWhere('t.createdAt > :startDate', 
+                {startDate: new Date(dates.dataStart || new Date(1111, 11, 11))})
+            .andWhere('t.createdAt < :endDate', 
+                {endDate: new Date(dates.dataEnd || new Date())})
+            .getMany();
+        } else {
+            transactions = await this.transactionRepository
+                .find({ where: {debitedAccountId: id}})
         }
 
         return transactions;
     }
 
-    // Filtragem por cashin
     public findByCashIn = async (id: number, dates: FilterInfo) => {
-        let transactions = await this.transactionRepository.find({ where: [
-            {creditedAccountId: id}
-        ] })
+        let transactions = [];
 
-        if(dates.dataStart !== null && dates.dataEnd !== null) {
-            transactions = this.filterByDateAfter(transactions, dates);
+        if(dates.dataStart !== null || dates.dataEnd !== null) {
+            transactions = await this.transactionRepository
+            .createQueryBuilder('t')
+            .where('t.creditedAccountId = :id', {id})
+            .andWhere('t.createdAt > :startDate', 
+                {startDate: new Date(dates.dataStart || new Date(1111, 11, 11))})
+            .andWhere('t.createdAt < :endDate', 
+                {endDate: new Date(dates.dataEnd || new Date())})
+            .getMany();
+        } else {
+            transactions = await this.transactionRepository
+                .find({ where: {creditedAccountId: id}})
         }
 
         return transactions;
-    }
-
-    private filterByDateAfter = (transactions: Transaction[], dates: FilterInfo) => {
-        const filterByDate = transactions.filter((t: Transaction) => {
-            if(
-                t.createdAt > new Date(dates.dataStart) 
-                && t.createdAt < new Date(dates.dataEnd)
-            ) return t;
-        });
-        return filterByDate;
     }
 }

@@ -13,7 +13,8 @@ routes.use(authToken);
 
 routes.get('/account', new AccountController().findBalanceByUserLogged);
 routes.post('/transaction', new TransactionController().transfer);
-routes.get('/transaction/date/type', new TransactionController().findTransactionsByDateOrAndType);
+routes.get('/transaction/date', new TransactionController().findTransactionsByDate);
+routes.get('/transaction/cashin', new TransactionController().findTransactionsByCashIn);
 routes.get('/transaction', new TransactionController().findTransactionsByUser);
 
 export default routes;

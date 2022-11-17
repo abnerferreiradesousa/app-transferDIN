@@ -43,21 +43,25 @@ export class TransactionService {
         return transactions;
     }
 
-    public findTransactionsByDateOrAndType = async (user: UserJWT, filterInfo: FilterInfo) => {
-        let transactions:Transaction[] = [];
+    public findTransactionsByDate = async (user: UserJWT, filterInfo: FilterInfo) => {
+        const transactions = await this.transactionRepository
+            .findByDate(user.id, filterInfo)   
+            
+        return transactions;
+    }
 
-        if(filterInfo.transactionType === null) {
-            transactions = await this.transactionRepository
-                .findByDate(user.id, filterInfo)   
-        }
-        if (filterInfo.transactionType?.toLowerCase() === "cashin") {
-            transactions = await this.transactionRepository
-                .findByCashIn(user.id, filterInfo)   
-        }
-        if (filterInfo.transactionType?.toLowerCase() === "cashout") {
-            transactions = await this.transactionRepository
-                .findByCashOut(user.id, filterInfo)   
-        }
+    public findTransactionsByCashIn = async (user: UserJWT, filterInfo: FilterInfo) => {
+
+        const transactions = await this.transactionRepository
+            .findByCashIn(user.id, filterInfo)   
+            
+        return transactions;
+    }
+
+    public findTransactionsByCashOut = async (user: UserJWT, filterInfo: FilterInfo) => {
+
+        const transactions = await this.transactionRepository
+            .findByCashOut(user.id, filterInfo)   
             
         return transactions;
     }
