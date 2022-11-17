@@ -30,3 +30,10 @@ export type TransactionData = {
   debitedAccountId?: number,
   creditedAccountId?: number,
 }
+
+export type FilterInfo = {
+  dataStart: Date,
+  dataEnd: Date
+  transactionType?: string,
+}
+

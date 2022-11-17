@@ -1,7 +1,8 @@
 import { StatusCodes } from "http-status-codes";
+import { Transaction } from "../entities/Transaction";
 import { UserJWT } from "../helpers/generateJWT";
 import { errorMessage } from "../helpers/middlewares";
-import { TransactionData, TransferData } from "../interfaces";
+import { FilterInfo, TransactionData, TransferData } from "../interfaces";
 import { AccountRepository } from "../repositories/AccountRepository";
 import { TransactionRepository } from "../repositories/TransactionRepository";
 import { UserRepository } from "../repositories/UserRepository";
@@ -42,7 +43,27 @@ export class TransactionService {
         return transactions;
     }
 
+    public findTransactionsByDateOrAndType = async (user: UserJWT, filterInfo: FilterInfo) => {
+        let transactions:Transaction[] = [];
+
+        if(filterInfo.transactionType === null) {
+            transactions = await this.transactionRepository
+                .findByDate(user.id, filterInfo)   
+        }
+        if (filterInfo.transactionType?.toLowerCase() === "cashin") {
+            transactions = await this.transactionRepository
+                .findByCashIn(user.id, filterInfo)   
+        }
+        if (filterInfo.transactionType?.toLowerCase() === "cashout") {
+            transactions = await this.transactionRepository
+                .findByCashOut(user.id, filterInfo)   
+        }
+            
+        return transactions;
+    }
+
     private validate = async (senderInfo: UserJWT, recieverInfo: TransferData) => {
+        console.log(senderInfo.username, recieverInfo.usernameCredited)
         if(senderInfo.username === recieverInfo.usernameCredited) {
             throw errorMessage(
                 StatusCodes.CONFLICT, 

@@ -8,16 +8,11 @@ export class UserRepository {
 
     public create = async (user: SimpleUser): Promise<User> => {
         const newUser = this.userRepository.create(user);
-        await this.userRepository.save(newUser);
-
-        return await this.findByUsername(newUser.username);
+        return await this.userRepository.save(newUser);
     }
 
-    public findByUsername = async (username: string): Promise<User> => {
-        const isUser = await this.userRepository.findOne(
-            { where: { username: username } }
-        ) as unknown as User;
-
-        return isUser;
+    public findByUsername = async (username: string): Promise<User>=> {
+        const isUser = await this.userRepository.findOne({ where: { username } })
+        return isUser as User;
     }
 }

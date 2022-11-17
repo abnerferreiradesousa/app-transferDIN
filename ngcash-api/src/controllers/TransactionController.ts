@@ -21,5 +21,12 @@ export class TransactionController {
             
         return res.status(StatusCodes.OK).json({ transactions })
     }
+
+    public findTransactionsByDateOrAndType = async (req: MyRequest, res: Response) => {
+        const transactions = await this
+            .transactionService.findTransactionsByDateOrAndType(req.user as UserJWT, req.body)
+            
+        return res.status(StatusCodes.OK).json({ transactions })
+    }
     
 }

@@ -9,7 +9,7 @@ export class Transaction {
     @Column()
     value: number
 
-    @CreateDateColumn()
+    @CreateDateColumn({ type: 'timestamp' })
     createdAt: Date
 
     @Column()

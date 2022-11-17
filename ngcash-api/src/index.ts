@@ -4,8 +4,10 @@ import { AppDataSource } from "./data-source";
 import { errorHandler } from "./helpers/middlewares";
 import routes from "./routes";
 
+const app = express();
+
 AppDataSource.initialize().then(() => {
-    const app = express();
+    // const app = express();
 
     app.use(express.json());
 
@@ -19,3 +21,5 @@ AppDataSource.initialize().then(() => {
         console.log(`Server is running on port: http://localhost:${PORT}/user`);
     });
 });
+
+export default app;
