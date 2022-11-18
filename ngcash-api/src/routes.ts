@@ -6,16 +6,22 @@ import { authToken } from './helpers/middlewares';
 
 const routes = Router();
 
-routes.post('/user', new UserController().create);
-routes.post('/login', new UserController().login);
+const userController = new UserController();
+const accountController = new AccountController();
+const transactionController = new TransactionController();
+
+
+routes.post('/user', userController.create);
+routes.post('/login', userController.login);
 
 routes.use(authToken);
 
-routes.get('/account', new AccountController().findBalanceByUserLogged);
-routes.post('/transaction', new TransactionController().transfer);
-routes.get('/transaction/date', new TransactionController().findTransactionsByDate);
-routes.get('/transaction/cashin', new TransactionController().findTransactionsByCashIn);
-routes.get('/transaction/cashout', new TransactionController().findTransactionsByCashOut);
-routes.get('/transaction', new TransactionController().findTransactionsByUser);
+routes.get('/account', accountController.findBalanceByUserLogged);
+
+routes.post('/transaction', transactionController.transfer);
+routes.get('/transaction/date', transactionController.findTransactionsByDate);
+routes.get('/transaction/cashin', transactionController.findTransactionsByCashIn);
+routes.get('/transaction/cashout', transactionController.findTransactionsByCashOut);
+routes.get('/transaction', transactionController.findTransactionsByUser);
 
 export default routes;
