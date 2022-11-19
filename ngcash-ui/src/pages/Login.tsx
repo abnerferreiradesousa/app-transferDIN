@@ -1,12 +1,26 @@
+import { useRouter } from "next/router";
 import Form from "../components/Form";
+import { Token } from "../interfaces";
+import { login } from "../requests";
 
 export default function Login() {
-    const handleClick = (name: string, password: string) => {
-        
+    const router = useRouter();
+
+    const handleClick = async (name: string, password: string) => {
+        const data:Token | void = await login(name, password);
+        if(data) {
+            localStorage.setItem("token", data.token);
+            router.push('/Transaction');        
+        }
     }
 
     return (
-        <Form title='Login' handleClick={handleClick}/>
+        <Form
+            title='Login'
+            handleClick={handleClick}
+            pathRoute="Register"
+            linkTitle="Register"
+        />
     )
 }
 

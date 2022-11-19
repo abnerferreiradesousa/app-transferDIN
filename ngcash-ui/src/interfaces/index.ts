@@ -1,5 +1,5 @@
-export interface IErrorHandler extends Error {
-    status: number,
+export type Token = {
+  token: string
 }
 
 export interface Transaction {
