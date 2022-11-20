@@ -13,7 +13,6 @@ export class UserController {
 
     public login = async (req: Request, res: Response) => {
         const userLogged = await this.userService.login(req.body)
-        console.log(req.body, userLogged)
         return res.status(StatusCodes.OK).json({ userLogged })
     }
     

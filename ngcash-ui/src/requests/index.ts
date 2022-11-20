@@ -24,11 +24,9 @@ export const register = async (username: string, password: string)
 }
 
 export const fetchTransactions = async (token: string | null)
-: Promise<Transaction[] | [] | void> => {
-    try {
-        const response = await axios.get(`${URL}/transaction`)
-        return response.data;
-    } catch(err) {
-        console.log(err)
-    }
+: Promise<Transaction[]> => {
+    const response = await axios.get(`${URL}/transaction`, { headers: {
+        Authorization: token
+    }})
+    return response.data.transactions;
 }

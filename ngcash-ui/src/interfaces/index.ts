@@ -19,7 +19,7 @@ export interface IUserToken extends IUser {
 export interface Transaction {
   id?: number
   value: number
-  createdAt?: Date
+  createdAt: Date
   debitedAccountId?: number
   creditedAccountId?: number
 }

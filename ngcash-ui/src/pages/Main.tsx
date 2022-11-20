@@ -1,28 +1,46 @@
+import { clear } from "console";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
+import BasicTable from "../components/BasicTable";
+import Header from "../components/Header";
 import { Transaction } from "../interfaces";
-import { selectValue } from '../redux/slices/userSlice'
+import { selectUser } from '../redux/slices/userSlice'
 import { fetchTransactions } from "../requests";
 
 interface TransactionProps {
-    transactions: Transaction[] | []
+    transactions: Transaction[]
 }
 
 export default function Main() {
     const [value, setValue] = useState("");
     const [recieverName, setRecieverName] = useState("");
-    const { account, username } = useSelector(selectValue);
-    const handleClick = () => localStorage.removeItem("token");
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
+    const { account, username, token } = useSelector(selectUser);
+
+
+    useEffect(() => {
+        const fetch = async () => {
+            try {
+                console.log(token)
+                const data = await fetchTransactions(token);
+                console.log(data)
+                setTransactions(data);
+            } catch(err) {
+                console.log(err)
+            }
+        }
+        fetch()
+    }, [])
 
     return (
         <>
-            <Link href="/" onClick={handleClick}>Log out</Link>
-            <h1>Transações</h1>
-            <p>Sr. {username} </p>
-            <p>Saldo em conta: {account?.balance}</p>
+            <Header
+                balance={account?.balance}
+                username={username}
+            />
             <section>
-                <h2>Transferências</h2>
+                <h2>Transferir</h2>
                 <label htmlFor="reciever">
                     Nome do destinatário:
                     <input
@@ -40,16 +58,7 @@ export default function Main() {
                     />
                 </label>
             </section>
+            <BasicTable rows={transactions} />
         </>
     )
 }
-
-// export async function getStaticProps() {
-//     const transactions = await fetchTransactions();
-
-//     return {
-//       props: {
-//         transactions,
-//       },
-//     }
-// }

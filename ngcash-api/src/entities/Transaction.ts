@@ -20,11 +20,11 @@ export class Transaction {
 
     // Tem alguma forma melhor de fazer esse relacionamento de duas colunas 
     // na entidade Transaction com uma na entidade Account?
-    @ManyToOne(() => Account, account => account.transactions)
+    @ManyToOne(() => Account, account => account.transactions, {eager: true})
     @JoinColumn({name: "debitedAccountId"})
     account: Account
 
-    @ManyToOne(() => Account, account => account.transactions)
+    @ManyToOne(() => Account, account => account.transactions, {eager: true})
     @JoinColumn({name: "creditedAccountId"})
     account2: Account
 }

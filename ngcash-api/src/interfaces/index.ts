@@ -1,4 +1,6 @@
 import { Request } from 'express';
+import { Account } from '../entities/Account';
+import { Transaction } from '../entities/Transaction';
 import { User } from '../entities/User';
 import { UserJWT } from '../helpers/generateJWT';
 
@@ -41,3 +43,16 @@ export interface IUserToken extends User {
   token: string
 } 
 
+export interface IAccountMaster extends Account {
+  user: User
+}
+
+export interface ITransactionMaster extends Transaction {
+  account: IAccountMaster,
+  account2: IAccountMaster,
+}
+
+export interface ITransactionSerial extends Transaction {
+  debitedName: string
+  creditedName: string
+}

@@ -1,6 +1,6 @@
 import { AppDataSource } from "../data-source";
 import { Transaction } from "../entities/Transaction";
-import { FilterInfo, TransactionData } from "../interfaces";
+import { FilterInfo, ITransactionMaster, TransactionData } from "../interfaces";
 
 export class TransactionRepository {
 
@@ -15,9 +15,24 @@ export class TransactionRepository {
     public findTransactionsByUser = async (id: number) => {
         const transactions = await this.transactionRepository.find({ where: [
             {debitedAccountId: id},
-            {creditedAccountId: id}
-        ] })
-        return transactions;
+            {creditedAccountId: id},
+        ], select: {
+            account: {
+                user: {username: true},
+            },
+            account2: {
+                user: {username: true}
+            }
+        }, relations: {
+            account2: {
+                user: true
+            },
+            account: { 
+                user: true
+            }
+        }})
+
+        return this.serialize(transactions);
     }
 
     public findByDate = async (id: number, dates: FilterInfo) => {
@@ -70,5 +85,18 @@ export class TransactionRepository {
         }
 
         return transactions;
+    }
+
+    private serialize = (transactions: ITransactionMaster[]) => {
+        return transactions.map((t: ITransactionMaster) => ({
+            id: t.id,
+            value: t.value,
+            createdAt: t.createdAt,
+            debitedAccountId: t.debitedAccountId,
+            creditedAccountId: t.creditedAccountId,
+            debitedName: t.account.user.username,
+            creditedName: t.account2.user.username
+        }))
+
     }
 }

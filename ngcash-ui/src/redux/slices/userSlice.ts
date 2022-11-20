@@ -30,8 +30,6 @@ export const handleUser = createSlice({
 
 export const { setUser } = handleUser.actions
 
-export const selectValue = (state: RootState) => {
-  return state.user;
-}; 
+export const selectUser = (state: RootState) => state.user;
 
 export default handleUser.reducer
