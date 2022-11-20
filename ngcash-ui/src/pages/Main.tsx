@@ -9,9 +9,9 @@ interface TransactionProps {
     transactions: Transaction[] | []
 }
 
-export default function Main(props: TransactionProps) {
-    const [recieverName, setRecieverName] = useState("");
+export default function Main() {
     const [value, setValue] = useState("");
+    const [recieverName, setRecieverName] = useState("");
     const { account, username } = useSelector(selectValue);
     const handleClick = () => localStorage.removeItem("token");
 
@@ -44,12 +44,12 @@ export default function Main(props: TransactionProps) {
     )
 }
 
-export async function getStaticProps() {
-    const transactions = await fetchTransactions();
+// export async function getStaticProps() {
+//     const transactions = await fetchTransactions();
 
-    return {
-      props: {
-        transactions,
-      },
-    }
-  }
+//     return {
+//       props: {
+//         transactions,
+//       },
+//     }
+// }

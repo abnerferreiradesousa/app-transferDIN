@@ -37,3 +37,7 @@ export type FilterInfo = {
   transactionType?: string,
 }
 
+export interface IUserToken extends User {
+  token: string
+} 
+

@@ -8,14 +8,13 @@ export class UserController {
 
     public create = async (req: Request, res: Response) => {
         const user = await this.userService.create(req.body)
-        console.log(req.body, user)
         return res.status(StatusCodes.CREATED).json({ user })
     }
 
     public login = async (req: Request, res: Response) => {
-        const token = await this.userService.login(req.body)
-        console.log(req.body, token)
-        return res.status(StatusCodes.OK).json({ token })
+        const userLogged = await this.userService.login(req.body)
+        console.log(req.body, userLogged)
+        return res.status(StatusCodes.OK).json({ userLogged })
     }
     
 }

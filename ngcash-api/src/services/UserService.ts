@@ -3,7 +3,7 @@ import { User } from "../entities/User";
 import generateJWT from "../helpers/generateJWT";
 import { errorMessage } from "../helpers/middlewares";
 import { compareHash, generateHash } from "../helpers/passwordHash";
-import { SimpleUser, UserLogin } from "../interfaces";
+import { IUserToken, SimpleUser, UserLogin } from "../interfaces";
 import { UserRepository } from "../repositories/UserRepository";
 
 
@@ -30,7 +30,7 @@ export class UserService {
         return await this.userRepository.create({ ...user, password: passwordHash });
     }
 
-    public login = async (user: UserLogin): Promise<string> => {
+    public login = async (user: UserLogin): Promise<IUserToken> => {
         const isUser = await this.userRepository.findByUsername(user.username);
         const isSamePassword = await compareHash(user.password, isUser.password);
 
@@ -39,7 +39,10 @@ export class UserService {
         }
 
         const { password, ...restData} = isUser;
-        return generateJWT(restData)
+        return {
+            token: generateJWT(restData),
+            ...isUser
+        }
     }
 
     public validLength = (value: string, minLength: number): void => {

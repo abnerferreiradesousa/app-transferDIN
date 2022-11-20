@@ -7,13 +7,11 @@ import { setUser } from '../redux/slices/userSlice'
 
 export default function Register() {
     const router = useRouter();
-    const dispatch = useDispatch();
 
     const handleClick = async (name: string, password: string) => {
         const userCreated = await register(name, password);
         if(userCreated) {
             router.push('/Login');  
-            dispatch(setUser(userCreated))     
         }
     }
 
