@@ -18,11 +18,11 @@ export interface Account {
 }
 
 export interface User {
-  id?: number
-  username: string
-  password: string
-  account?: Account
-}
+    id?: number
+    username: string
+    password: string
+    account?: Account
+  }
 
 export type SimpleUser = {
   username: string
