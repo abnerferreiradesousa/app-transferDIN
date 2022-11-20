@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { useState } from "react"
 
-export interface PropsData {
+export interface FomrProps {
     title: string
     pathRoute: string
     linkTitle: string
     handleClick: (name: string, password: string) => void
 }
 
-export default function Form({title, pathRoute, linkTitle, handleClick}: PropsData) {
+export default function Form({title, pathRoute, linkTitle, handleClick}: FomrProps) {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
 

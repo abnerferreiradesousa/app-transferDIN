@@ -1,4 +1,18 @@
-export type Token = {
+export interface IAccount {
+  id?: number
+  balance: number
+  transactions?: Transaction[]
+  user?: IUser
+}
+
+export interface IUser {
+  id?: number
+  username: string
+  password: string
+  account?: IAccount
+}
+
+export interface IUserToken extends IUser {
   token: string
 }
 
@@ -9,20 +23,6 @@ export interface Transaction {
   debitedAccountId?: number
   creditedAccountId?: number
 }
-
-export interface Account {
-  id?: number
-  balance: number
-  transactions?: Transaction[]
-  user?: User
-}
-
-export interface User {
-    id?: number
-    username: string
-    password: string
-    account?: Account
-  }
 
 export type SimpleUser = {
   username: string

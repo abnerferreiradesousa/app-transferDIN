@@ -1,9 +1,6 @@
 import { useRouter } from "next/router";
 import Form from "../components/Form";
 import { register } from "../requests";
-import { useDispatch } from 'react-redux'
-import { setUser } from '../redux/slices/userSlice'
-
 
 export default function Register() {
     const router = useRouter();
