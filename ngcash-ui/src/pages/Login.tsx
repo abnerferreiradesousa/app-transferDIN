@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Form from "../components/Form";
-import { Token } from "../interfaces";
+import type { Token } from "../interfaces";
 import { login } from "../requests";
 
 export default function Login() {
@@ -10,7 +10,7 @@ export default function Login() {
         const data:Token | void = await login(name, password);
         if(data) {
             localStorage.setItem("token", data.token);
-            router.push('/Transaction');        
+            router.push('/Main');        
         }
     }
 
