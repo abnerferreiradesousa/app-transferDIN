@@ -1,0 +1,50 @@
+version: "3.3"
+
+services:
+
+  backend:
+    container_name: "ngcash-api"
+    build: ./ngcash-api
+    ports:
+      - 3001:3001
+    volumes:
+      - ./backend:/app/backend
+    environment:
+      - PORT=3001
+      - DB_USER=postgres
+      - DB_PASS=postgres
+      - DB_HOST=db
+      - DB_NAME=ngcash_db
+      - DB_PORT=5432
+    healthcheck:
+      test: ["CMD", "lsof", "-i", ":3001"]
+      timeout: 10s
+      retries: 5
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+
+  frontend:
+    container_name: "ngcash-ui"
+    build: ./ngcash-ui
+    ports:
+      - 3000:3000
+    depends_on:
+      backend:
+        condition: service_healthy
+        
+  db:
+    container_name: "ngcash-db"
+    image: "postgres:14.5"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "ngcash_db"
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
