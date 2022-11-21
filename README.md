@@ -2,7 +2,7 @@
 
 <h2>🥱 Introdução...</h2>
 
-<p>Este repositório contém uma aplicação fullstack, dockerizada de um sistema de transferência semelhante ao de um banco, desenvolvidos usando a plataforma Typescript, Next.js e PostgresSQL.</p>
+<p>Este repositório contém uma aplicação fullstack, dockerizada de um sistema de transferência semelhante ao de um banco, desenvolvidos usando a plataforma Typescript, React com Next.js e PostgresSQL.</p>
 
 ---
 
@@ -38,9 +38,9 @@
 <summary><strong>Como rodar?</strong></summary>
   
 1. Clone o repositório com o comando:
-  - `git clone git@github.com:caioBatistaDosSantos/Project-Tryitter.git`;
+  - `git@github.com:abnerferreiradesousa/app-transferDIN.git`;
     - Entre na pasta do repositório:
-      - `cd Project-Tryitter`
+      - `cd app-transferDIN`
 2. Inicie a aplicação com o comando:
  - `docker-compose up -d --build`
    - *Obs: Este comando será responsável por criar dois cointainers docker: um para iniciar banco de dados e populá-lo, e outro para subir a API e disponilizar uma URL para acesso da aplicação.*
