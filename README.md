@@ -70,5 +70,8 @@
 
 <h2>Considerações finais... ✍️</h2>
 
-<p>📚 Aprendi a analisar melhor os bugs, erros e problemas em geral e assim pude buscar soluções mais assertivas, de forma mais rápida e até mais concisas.</p>
+<p>
+ 📚 Aprendi a analisar melhor os bugs, erros e problemas em geral e assim pude buscar soluções mais assertivas, de forma mais rápida e até mais concisas.
+  Entendi também que devo me planejar melhor quanto ao que o frontend precisa para funcionar de forma integrada e eficiente, porque por vezes precisei alterar algo no backend que já estava construído para se adequar ao frontend.
+</p>
 
