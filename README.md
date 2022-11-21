@@ -1,5 +1,7 @@
 <h1 align="center">🚀 Bem vindo ao projeto TransferDIN! 🚀</h1>
 
+![alt text](https://raw.githubusercontent.com/abnerferreiradesousa/app-transferDIN/main/images/app.png)
+
 <h2>🥱 Introdução...</h2>
 
 <p>Este repositório contém uma aplicação fullstack, dockerizada de um sistema de transferência semelhante ao de um banco, desenvolvidos usando a plataforma Typescript, React com Next.js e PostgresSQL.</p>
