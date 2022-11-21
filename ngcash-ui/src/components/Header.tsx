@@ -19,7 +19,7 @@ export default function Header({ username, balance}: HeaderProps) {
             <nav className={styles.nav}>
                 <p>Sr(a). {username}</p>
                 <p>Saldo em conta: R$ {balance?.toFixed(2)}</p>
-                <Link href="/" onClick={handleClick}>Logout</Link>
+                <Link href="/Login" onClick={handleClick}>Logout</Link>
             </nav>
         </section>
     )

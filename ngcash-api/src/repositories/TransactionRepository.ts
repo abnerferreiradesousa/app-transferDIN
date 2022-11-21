@@ -27,7 +27,9 @@ export class TransactionRepository {
         const transactions = await this.transactionRepository.find({ where: [
             {debitedAccountId: id},
             {creditedAccountId: id},
-        ], select, relations })
+        ], select, relations, order: {
+            createdAt: "DESC"
+        } })
 
         return this.serialize(transactions);
     }
@@ -58,30 +60,32 @@ export class TransactionRepository {
         // }
 
         let transactions = await this.transactionRepository
-            .find({ where: { debitedAccountId: id }})
+            .find({ where: { debitedAccountId: id}, select, relations, order: {
+                createdAt: "DESC"
+            } })
 
-        return transactions;
+        return this.serialize(transactions);
     }
 
     public findByCashIn = async (id: number, dates: FilterInfo) => {
-        let transactions;
 
-        if(dates !== null) {
-            transactions = await this.transactionRepository
-            .createQueryBuilder('t')
-            .where('t.creditedAccountId = :id', {id})
-            .andWhere('t.createdAt > :startDate', 
-                {startDate: new Date(dates.dataStart || new Date(1111, 11, 11))})
-            .andWhere('t.createdAt < :endDate', 
-                {endDate: new Date(dates.dataEnd || new Date())})
-            .getMany();
-        }
-        // else {
-        //     transactions = await this.transactionRepository
-        //         .find({ where: {creditedAccountId: id}, select, relations })
+        // if(dates !== null) {
+            // transactions = await this.transactionRepository
+            // .createQueryBuilder('t')
+            // .where('t.creditedAccountId = :id', {id})
+            // .andWhere('t.createdAt > :startDate', 
+            //     {startDate: new Date(dates.dataStart || new Date(1111, 11, 11))})
+            // .andWhere('t.createdAt < :endDate', 
+            //     {endDate: new Date(dates.dataEnd || new Date())})
+            // .getMany();
         // }
 
-        return transactions;
+        let transactions = await this.transactionRepository
+            .find({ where: {creditedAccountId: id}, select, relations, order: {
+                createdAt: "DESC"
+            } })
+
+        return this.serialize(transactions);
     }
 
     private serialize = (transactions: ITransactionMaster[]) => {

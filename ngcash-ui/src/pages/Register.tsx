@@ -14,7 +14,7 @@ export default function Register() {
 
     return (
         <Form
-            title='Registre-se'
+            title='REGISTRE-SE'
             handleClick={handleClick}
             pathRoute="Login"
             linkTitle="Login"

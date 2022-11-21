@@ -20,10 +20,10 @@ export default function Login() {
 
     return (
         <Form
-            title='Login'
+            title='LOGIN'
             handleClick={handleClick}
             pathRoute="Register"
-            linkTitle="Register"
+            linkTitle="Registre-se"
         />
     )
 }

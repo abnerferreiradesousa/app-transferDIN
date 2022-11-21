@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IUserToken, Transaction, IUser, ITransactionSerial, FilterInfo, TransferData } from '../interfaces';
+import { IUserToken, Transaction, IUser, ITransactionSerial, FilterInfo, TransferData, IAccount, ITransactionMaster } from '../interfaces';
 
 const URL = 'http://localhost:3001';
 
@@ -32,7 +32,7 @@ export const fetchTransactions = async (token: string | null)
 }
 
 export const fetchTransactionsByCashIn = async (token: string | null, dates?: FilterInfo)
-: Promise<Transaction[]> => {
+: Promise<ITransactionSerial[]> => {
     const response = await axios({
         data: dates, 
         baseURL: `${URL}/transaction/cashin`, 
@@ -44,7 +44,7 @@ export const fetchTransactionsByCashIn = async (token: string | null, dates?: Fi
 }
 
 export const fetchTransactionsByCashOut = async (token: string | null, dates?: FilterInfo)
-: Promise<Transaction[]> => {
+: Promise<ITransactionSerial[]> => {
     const response = await axios({
         data: dates, 
         baseURL: `${URL}/transaction/cashout`, 
@@ -65,4 +65,15 @@ export const transfer = async (token: string | null, transferData: TransferData)
             Authorization: token
         }})
     return response.data.transactions;
+}
+
+export const getBalance = async (token: string | null)
+: Promise<IAccount> => {
+    const response = await axios({
+        baseURL: `${URL}/account`, 
+        method: "GET", 
+        headers: {
+            Authorization: token
+        }})
+    return response.data.account;
 }

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
-import { IUserToken } from '../../interfaces'
+import { IAccount, IUserToken } from '../../interfaces'
 
 const initialState: IUserToken = {
   id: 0,
@@ -25,10 +25,13 @@ export const handleUser = createSlice({
           ...action.payload
         };
     },
+    setAccount: (state, action: PayloadAction<IAccount>) => {
+      state.account = action.payload;
+    }
   },
 })
 
-export const { setUser } = handleUser.actions
+export const { setUser, setAccount } = handleUser.actions
 
 export const selectUser = (state: RootState) => state.user;
 

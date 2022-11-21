@@ -5,6 +5,11 @@ export interface IAccount {
   user?: IUser
 }
 
+export interface ITransactionMaster extends Transaction {
+  account: IAccount,
+  account2: IAccount,
+}
+
 export interface ITransactionSerial extends Transaction {
   debitedName: string
   creditedName: string

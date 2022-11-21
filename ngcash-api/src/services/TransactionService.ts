@@ -46,7 +46,6 @@ export class TransactionService {
     public findTransactionsByDate = async (user: UserJWT, filterInfo: FilterInfo) => {
         const transactions = await this.transactionRepository
             .findByDate(user.id, filterInfo)   
-            
         return transactions;
     }
 
@@ -54,6 +53,7 @@ export class TransactionService {
 
         const transactions = await this.transactionRepository
             .findByCashIn(user.id, filterInfo)   
+        console.log(transactions, user)
             
         return transactions;
     }

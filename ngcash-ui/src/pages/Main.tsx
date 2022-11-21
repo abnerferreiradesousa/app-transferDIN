@@ -1,51 +1,57 @@
-import { clear } from "console";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import BasicTable from "../components/BasicTable";
 import Header from "../components/Header";
-import { ITransactionSerial, Transaction } from "../interfaces";
-import { selectUser } from '../redux/slices/userSlice'
+import { ITransactionSerial } from "../interfaces";
+import { selectUser, setAccount } from '../redux/slices/userSlice'
 import {
     fetchTransactions,
     fetchTransactionsByCashIn,
     fetchTransactionsByCashOut,
+    getBalance,
     transfer 
 } from "../requests";
 import styles from '../../styles/home.module.scss'
 
 
 interface TransactionProps {
-    transactions: Transaction[]
+    transactions: ITransactionSerial[]
 }
 
 export default function Main() {
     const [value, setValue] = useState("");
     const [recieverName, setRecieverName] = useState("");
-    const [wasTransfered, setWasTransfered] = useState(false);
-    const [transactions, setTransactions] = useState<Transaction[]>([]);
-    const [transfersBackup, setTransfersBackup] = useState<Transaction[]>([]);
+    const [wasTransfered, setWasTransfered] = useState(0);
+    const [selected, setSelected] = useState(false);
+    const [transactions, setTransactions] = useState<ITransactionSerial[]>([]);
+    const [transfersBackup, setTransfersBackup] = useState<ITransactionSerial[]>([]);
     const { account, username, token } = useSelector(selectUser);
+    const dispatch = useDispatch();
 
     const fetchCashIn = async () => {
         const transfers = await fetchTransactionsByCashIn(token);
-        console.log(transfers)
         setTransactions(transfers)
     }
 
     const fetchCashOut = async () => {
         const transfers = await fetchTransactionsByCashOut(token);
-        console.log(transfers)
         setTransactions(transfers)
     }
 
     const handleTransfer = async () => {
-        const transaction = await transfer(token, { 
-            value, 
-            usernameCredited: recieverName
-        });
-        if(transaction) {
-            setWasTransfered(true)
+        if(value != "" || recieverName != "") {
+            const transaction = await transfer(token, { 
+                value, 
+                usernameCredited: recieverName
+            });
+            if(transaction !== null) {
+                setWasTransfered(wasTransfered + 1)
+                alert("Transaferência concluída!")
+                setValue("")
+                setRecieverName("")
+            }
+        } else {
+            alert("Preencha os campos de transferência!")
         }
     }
 
@@ -53,6 +59,8 @@ export default function Main() {
         const fetch = async () => {
             try {
                 const data = await fetchTransactions(token);
+                const account = await getBalance(token);
+                dispatch(setAccount(account));
                 setTransactions(data);
                 setTransfersBackup(data);
             } catch(err) {
@@ -75,6 +83,7 @@ export default function Main() {
                     <input
                         type="text"
                         id="reciever"
+                        value={recieverName}
                         onChange={(e) => setRecieverName(e.target.value)}
                     />
                 </label>
@@ -83,6 +92,7 @@ export default function Main() {
                     <input
                         type="text"
                         id="value"
+                        value={value}
                         onChange={(e) => setValue(e.target.value)}
                     />
                 </label>
@@ -117,12 +127,12 @@ export default function Main() {
                     <button
                         type="button"
                         onClick={fetchCashIn}
-                        className={styles.button}
+                        className={selected === true ? styles.filter_button_actived : ""}
                     >Recebidas</button>
                     <button
                         type="button"
                         onClick={fetchCashOut}
-                        className={styles.button}
+                        className={selected === true ? styles.filter_button_actived : ""}
                     >Enviadas</button>
                     </section>
                 </section>
