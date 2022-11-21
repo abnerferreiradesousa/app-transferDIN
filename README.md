@@ -8,6 +8,9 @@
 
 <h2>🛠️ Tecnologias utilizadas 🧰</h2>
 
+<details>
+<summary><strong>Skills</strong></summary>
+
 * <p>👉 TypeScript</p>
 
 * <p>👉 PostgresSQL</p>
@@ -29,6 +32,8 @@
 * <p>👉 Redux</p>
 
 * <p>👉 SASS</p>
+
+</details>
 ---
 
 <h2>👨‍💻 Rodando o projeto👨‍💻</h2>
