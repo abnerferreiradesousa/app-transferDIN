@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import stylesF from '../../styles/form.module.scss'
-import stylesH from '../../styles/home.module.scss'
+import stylesF from '../styles/form.module.scss'
+import stylesH from '../styles/home.module.scss'
 
 export default function Home() {
 

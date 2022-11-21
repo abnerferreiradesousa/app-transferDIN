@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState } from "react"
-import stylesF from '../../styles/form.module.scss';
-import stylesH from '../../styles/home.module.scss';
+import stylesF from '../styles/form.module.scss';
+import stylesH from '../styles/home.module.scss';
 
 export interface FomrProps {
     title: string
