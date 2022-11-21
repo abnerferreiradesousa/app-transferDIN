@@ -4,12 +4,8 @@
 
 <p>Este repositório contém uma aplicação fullstack, dockerizada de um sistema de transferência semelhante ao de um banco, desenvolvidos usando a plataforma Typescript, React com Next.js e PostgresSQL.</p>
 
----
-
-<h2>🛠️ Tecnologias utilizadas 🧰</h2>
-
 <details>
-<summary><strong>Skills</strong></summary>
+<summary><strong> 🛠️ Tecnologias utilizadas 🧰 </strong></summary>
 
 * <p>👉 TypeScript</p>
 
@@ -35,7 +31,6 @@
 
 </details>
 
-
 ---
 
 <h2>👨‍💻 Rodando o projeto👨‍💻</h2>
@@ -56,6 +51,7 @@
 
   
 </details>
+
 <details>
   
 <summary><strong>Como usar cada rota?</strong></summary>  
@@ -65,13 +61,14 @@
       
 </details>
 
-<h2>💥 Defafios que enfrentamos... 🗡️</h2> 
+<h2>💥 Defafios que enfrentei... 🗡️</h2> 
 
-* 🛡️ Conflitos de código.
-* 🥊 Configuração de algumas ferramentas como JWT e os Testes.
-* ⚔️ Como popular o banco de dados.
+* 🛡️ Dockerizar a aplicação.
+* 🥊 Aprender o TypeORM.
+* ⚔️ Configuração do PostgreSQL.
+* 💥 Como desenvolver o projeto.
 
 <h2>Considerações finais... ✍️</h2>
 
-<p>📚 Aprendemos a pensar/refletir mais ao nos deparar com um problema, no sentido de entender o que está causando aquela situação, ao invés de sair teclando sem um norte com o fim de achar a solução por pura tentativa, no C# isso não adianta. Isso nos ajudou a desenvolver soluções mais assertivas e até mais concisas.</p>
+<p>📚 Aprendi a analisar melhor os bugs, erros e problemas em geral e assim pude buscar soluções mais assertivas, de forma mais rápida e até mais concisas.</p>
 
