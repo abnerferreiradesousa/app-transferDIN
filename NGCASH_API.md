@@ -1,5 +1,7 @@
 # Project: NGCASH_API
-# 📁 Collection: Account 
+# 📁 Collection: Account
+
+## OBS.: Os campos abaixo como body, token, headers são meramente ilustrativos e representam o que precisa ser passada a cada rota para que ela possa funcionar tudo corretamente.
 
 
 ## End-point: Account
