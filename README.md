@@ -63,7 +63,7 @@
 <h2>💥 Defafios que enfrentei... 🗡️</h2> 
 
 * 🛡️ Dockerizar a aplicação.
-* 🥊 Aprender o TypeORM.
+* 🥊 Aprender o TypeORM do zero.
 * ⚔️ Configuração do PostgreSQL.
 * 💥 Como desenvolver o projeto.
 
