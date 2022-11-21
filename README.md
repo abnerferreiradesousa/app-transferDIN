@@ -36,6 +36,8 @@
 <details>
 <summary><strong> Critérios do projeto </strong></summary>
 
+## Backend
+
 - ☑️ Qualquer pessoa deverá poder fazer parte da NG. Para isso, basta realizar o cadastro informando *username* e *password*.
 
 - ☑️ Deve-se garantir que cada *username* seja único e composto por, pelo menos, 3 caracteres.
@@ -55,6 +57,9 @@
     - ❌ Data de realização da transação e/ou
         - ☑️ Transações de *cash-out;*
         - ☑️ Transações de *cash-in.*
+
+## Frontend
+
 - ☑️ Página para realizar o cadastro na NG informando *username* e *password.*
 - ☑️ Página para realizar o login informando *username* e *password.*
 - ☑️ Com o usuário logado, a página principal deve apresentar:
