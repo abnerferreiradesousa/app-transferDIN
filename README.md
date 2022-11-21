@@ -50,7 +50,10 @@
       - `cd app-transferDIN`
 2. Inicie a aplicação com o comando:
  - `docker-compose up -d --build`
-   - *Obs: Este comando será responsável por criar dois cointainers docker: um para iniciar banco de dados e populá-lo, e outro para subir a API e disponilizar uma URL para acesso da aplicação.*
+   - *Obs: Este comando será responsável por criar três cointainers docker: um para container para o banco de dados, o segundo para o backend e o último para o frontend.*
+3. Depois é só acessar a seguinte URL: http://localhost:3001/
+  - Caso queira testar a API via Postman, basta acessar o tópico <i>"Como usar cada rota?".</i>
+
   
 </details>
 <details>
@@ -61,11 +64,6 @@
 [Rotas Documentadas](https://github.com/caioBatistaDosSantos/Project-Tryitter/blob/main/BlogsAPI.md)
       
 </details>
-
-<h2><i>Projeto em desenvolvimento...</i></h2>
-
-- [Trello](https://trello.com/c/9tutsbgi/11-link-do-escalidraw-https-excalidrawcom-json6iooox5zdvz4of7xxzyny7vcx0bqpjbjhsoorrjftta)
-- [Escalidraw](https://excalidraw.com/#json=6IooOx5zDVZ4OF7XXzyny,7vCx0bQpJBJHSoOrRJfTtA)
 
 <h2>💥 Defafios que enfrentamos... 🗡️</h2> 
 
