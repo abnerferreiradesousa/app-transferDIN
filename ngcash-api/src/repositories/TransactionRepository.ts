@@ -1,6 +1,17 @@
+import { Between, LessThan, MoreThan } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Transaction } from "../entities/Transaction";
 import { FilterInfo, ITransactionMaster, TransactionData } from "../interfaces";
+
+const select = {
+    account: { user: {username: true} },
+    account2: { user: {username: true} }
+};
+
+const relations = {
+    account2: { user: true },
+    account: { user: true }
+};
 
 export class TransactionRepository {
 
@@ -16,21 +27,7 @@ export class TransactionRepository {
         const transactions = await this.transactionRepository.find({ where: [
             {debitedAccountId: id},
             {creditedAccountId: id},
-        ], select: {
-            account: {
-                user: {username: true},
-            },
-            account2: {
-                user: {username: true}
-            }
-        }, relations: {
-            account2: {
-                user: true
-            },
-            account: { 
-                user: true
-            }
-        }})
+        ], select, relations })
 
         return this.serialize(transactions);
     }
@@ -48,29 +45,28 @@ export class TransactionRepository {
     }
 
     public findByCashOut = async (id: number, dates: FilterInfo) => {
-        let transactions = [];
 
-        if(dates.dataStart !== null || dates.dataEnd !== null) {
-            transactions = await this.transactionRepository
-            .createQueryBuilder('t')
-            .where('t.debitedAccountId = :id', {id})
-            .andWhere('t.createdAt > :startDate', 
-                {startDate: new Date(dates.dataStart || new Date(1111, 11, 11))})
-            .andWhere('t.createdAt < :endDate', 
-                {endDate: new Date(dates.dataEnd || new Date())})
-            .getMany();
-        } else {
-            transactions = await this.transactionRepository
-                .find({ where: {debitedAccountId: id}})
-        }
+        // if(dates !== null) {
+        //     transactions = await this.transactionRepository
+        //     .createQueryBuilder('t')
+        //     .where('t.debitedAccountId = :id', {id})
+        //     .andWhere('t.createdAt > :startDate', 
+        //         {startDate: new Date(dates.dataStart || new Date(1111, 11, 11))})
+        //     .andWhere('t.createdAt < :endDate', 
+        //         {endDate: new Date(dates.dataEnd || new Date())})
+        //     .getMany();
+        // }
+
+        let transactions = await this.transactionRepository
+            .find({ where: { debitedAccountId: id }})
 
         return transactions;
     }
 
     public findByCashIn = async (id: number, dates: FilterInfo) => {
-        let transactions = [];
+        let transactions;
 
-        if(dates.dataStart !== null || dates.dataEnd !== null) {
+        if(dates !== null) {
             transactions = await this.transactionRepository
             .createQueryBuilder('t')
             .where('t.creditedAccountId = :id', {id})
@@ -79,10 +75,11 @@ export class TransactionRepository {
             .andWhere('t.createdAt < :endDate', 
                 {endDate: new Date(dates.dataEnd || new Date())})
             .getMany();
-        } else {
-            transactions = await this.transactionRepository
-                .find({ where: {creditedAccountId: id}})
         }
+        // else {
+        //     transactions = await this.transactionRepository
+        //         .find({ where: {creditedAccountId: id}, select, relations })
+        // }
 
         return transactions;
     }

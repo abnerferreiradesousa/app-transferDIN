@@ -60,6 +60,7 @@ export class TransactionService {
 
     public findTransactionsByCashOut = async (user: UserJWT, filterInfo: FilterInfo) => {
 
+        console.log(user)
         const transactions = await this.transactionRepository
             .findByCashOut(user.id, filterInfo)   
             
@@ -67,7 +68,6 @@ export class TransactionService {
     }
 
     private validate = async (senderInfo: UserJWT, recieverInfo: TransferData) => {
-        console.log(senderInfo.username, recieverInfo.usernameCredited)
         if(senderInfo.username === recieverInfo.usernameCredited) {
             throw errorMessage(
                 StatusCodes.CONFLICT, 

@@ -23,7 +23,6 @@ const authToken = (req: MyRequest, res: Response, next: NextFunction) => {
     if (!authorization) {
       return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'TOKEN_NOT_FOUND' });
     }
-    console.log("authorization", authorization)
 
     const tokenIsValid = jwt.verify(
       authorization, 

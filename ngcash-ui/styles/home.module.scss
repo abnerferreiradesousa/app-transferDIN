@@ -1,4 +1,99 @@
-.container {
+$font-standard: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+Bitstream Vera Sans Mono, Courier New, monospace;
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  h1 {
+    width: 30%;
+  }
+}
+
+.logo {
+  margin-left: 7rem;
+  font-size: 1.8rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  a, p {
+    margin: 1rem 2rem;
+  }
+  a:hover {
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 10%;
+  }
+}
+
+.transfer {
+  margin: 2rem 1.5rem;
+  border: solid 2px black;
+  background-color: black;
+  padding: 1rem;
+  border-radius: 10px;
+  color: white;
+  label {
+    margin-right: 1rem;
+  }
+  input {
+    margin-left: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+  }
+}
+
+.button {
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-size: medium;
+  font-family: $font-standard;
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
+}
+
+.input_date {
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: white;
+  color: black;
+  font-size: medium;
+  font-family: $font-standard;
+}
+
+.filter {
+  span, input, button {
+    margin-right: 0.5rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* .container {
   padding: 0 2rem;
 }
 
@@ -106,7 +201,7 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
-}
+}*/
 
 @media (max-width: 600px) {
   .grid {
