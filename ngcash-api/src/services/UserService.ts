@@ -13,15 +13,15 @@ export class UserService {
     
     public create = async (user: SimpleUser): Promise<User> => {
         this.validLength(user.username, 3)
-        const pattern = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=[^0-9]*[0-9]).{8,}$/;
 
+        const pattern = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=[^0-9]*[0-9]).{8,}$/;
         if (!user.password.match(pattern)) {
-            throw errorMessage(StatusCodes.CONFLICT, "Password incorrect format")
+            throw errorMessage(StatusCodes.CONFLICT, "Senha inválida")
         }
 
         const hasEqualUser = await this.userRepository.findByUsername(user.username)
         if(hasEqualUser !== null) {
-            throw errorMessage(StatusCodes.CONFLICT, "Username already exists!")
+            throw errorMessage(StatusCodes.CONFLICT, "Username já existe")
         }
         
         user.account = { balance: 100 }
@@ -32,10 +32,13 @@ export class UserService {
 
     public login = async (user: UserLogin): Promise<IUserToken> => {
         const isUser = await this.userRepository.findByUsername(user.username);
-        const isSamePassword = await compareHash(user.password, isUser.password);
+        if(isUser == null) {
+            throw errorMessage(StatusCodes.NOT_FOUND, "Usuário não encontrado")
+        }
 
-        if(isUser == null || !isSamePassword) {
-            throw errorMessage(StatusCodes.NOT_FOUND, "User not found!")
+        const isSamePassword = await compareHash(user.password, isUser.password);
+        if(!isSamePassword) {
+            throw errorMessage(StatusCodes.BAD_REQUEST, "Dados inválidos")
         }
 
         const { password, ...restData} = isUser;
@@ -45,8 +48,8 @@ export class UserService {
         }
     }
 
-    public validLength = (value: string, minLength: number): void => {
+    private validLength = (value: string, minLength: number): void => {
         if(value.length < minLength)
-            throw errorMessage(StatusCodes.CONFLICT, "Invalid length")
+            throw errorMessage(StatusCodes.CONFLICT, "Tamanho inválido")
     } 
 }

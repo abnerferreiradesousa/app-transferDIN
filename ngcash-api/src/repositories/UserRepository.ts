@@ -11,8 +11,8 @@ export class UserRepository {
         return await this.userRepository.save(newUser);
     }
 
-    public findByUsername = async (username: string): Promise<User>=> {
+    public findByUsername = async (username: string): Promise<User | null>=> {
         const isUser = await this.userRepository.findOne({ where: { username } })
-        return isUser as User;
+        return isUser;
     }
 }

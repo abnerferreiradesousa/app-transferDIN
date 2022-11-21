@@ -3,6 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import { IErrorHandler, MyRequest } from '../interfaces';
 import jwt from 'jsonwebtoken';
 
+
 const errorMessage = (status: number, message: string): IErrorHandler => ({
   name: 'Error',
   status,
