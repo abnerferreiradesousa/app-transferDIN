@@ -16,7 +16,7 @@
 		"noImplicitAny": true,
 		"strictPropertyInitialization": false
 	},
-	"include": ["src/**/*", "tests"],
+	"include": ["src/**/*", "test", "tests"],
 	"exclude": ["node_modules", "dist"],
 	"ts-node": {
 		"files": true
