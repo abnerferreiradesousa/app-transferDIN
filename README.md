@@ -1,43 +1,72 @@
-# 🚀 Bem vindo a minha aplicação List Contacts! 🚀
+<h1 align="center">🚀 Bem vindo ao projeto TransferDIN! 🚀</h1>
 
-![alt text](https://raw.githubusercontent.com/abnerferreiradesousa/list-contacts/main/plproj.png)
+<h2>🥱 Introdução...</h2>
 
-## 🥱 Introdução...
+<p>Este repositório contém uma aplicação fullstack, dockerizada de um sistema de transferência semelhante ao de um banco, desenvolvidos usando a plataforma Typescript, Next.js e PostgresSQL.</p>
 
-Um cliente precisa gerenciar uma lista de contatos, onde nome e telefone deverá ser
-armazenado, então, é esperado a criação de uma tela, nessa tela, deverá ter um botão para adicionar,
-onde uma caixa de diálogo para digitar os novos dados deverá ser aberta. Após criar, deverá ser
-possível listar os contatos, excluir ou abrir novamente a caixa de diálogo para editar os contatos já
-criados.
+---
 
-## Como rodar?
+<h2>🛠️ Tecnologias utilizadas 🧰</h2>
 
-  1. Clone o repositório
+* <p>👉 TypeScript</p>
 
-  - `git clone git@github.com:abnerferreiradesousa/list-contacts.git`.
-  - Entre na pasta do repositório que você acabou de clonar:
-    - Entre na pasta através do seu gerenciador de arquivos;
-    - Clique com o botão direito do mouse em cima do arquivo index.html e depois clique em "Abrir com Google Chrome".
+* <p>👉 PostgresSQL</p>
 
-## Defafios que infrentei...  🗡️ 💥 
+* <p>👉 Docker</p>
 
-* 🛡️ Trabalhar sem iniciar um projeto node/npm via CLI, só usando o arquivo ".html".
-* 🥊 Criar uma máscara para o input.
-* ⚔️ Validações e EventHandlers.
+* <p>👉 JsonWebToken</p>
 
-## Minhas considerações finais... ✍️
+* <p>👉 TypeORM</p>
 
-📚 Aprendi a pensar/refletir mais ao me deparar com um problema, no sentido de entender o que está causando aquele situação, ao invés de sair teclando sem um norte com o fim de achar a solução por pura tentativa. E isso me ajudou a desenvolver soluções mais assertivas e até mais concisas.
+* <p>👉 Express.js</p>
 
-💻 Quero listar as aprendizados em hard skills adquiridos/reforçados: 💻
+* <p>👉 Node.js</p>
 
-* 👉 Vuetify
+* <p>👉 Bcrypt</p>
 
-* 👉 JavaScript
+* <p>👉 Next.js</p>
 
-* 👉 Tailwind
+* <p>👉 Redux</p>
 
-* 👉 Trabalhar com bibliotecas só usando o link CDN.
+* <p>👉 SASS</p>
+---
 
-* 👉 Boostrap icons.
+<h2>👨‍💻 Rodando o projeto👨‍💻</h2>
+
+<details>
+  
+<summary><strong>Como rodar?</strong></summary>
+  
+1. Clone o repositório com o comando:
+  - `git clone git@github.com:caioBatistaDosSantos/Project-Tryitter.git`;
+    - Entre na pasta do repositório:
+      - `cd Project-Tryitter`
+2. Inicie a aplicação com o comando:
+ - `docker-compose up -d --build`
+   - *Obs: Este comando será responsável por criar dois cointainers docker: um para iniciar banco de dados e populá-lo, e outro para subir a API e disponilizar uma URL para acesso da aplicação.*
+  
+</details>
+<details>
+  
+<summary><strong>Como usar cada rota?</strong></summary>  
+</br>
  
+[Rotas Documentadas](https://github.com/caioBatistaDosSantos/Project-Tryitter/blob/main/BlogsAPI.md)
+      
+</details>
+
+<h2><i>Projeto em desenvolvimento...</i></h2>
+
+- [Trello](https://trello.com/c/9tutsbgi/11-link-do-escalidraw-https-excalidrawcom-json6iooox5zdvz4of7xxzyny7vcx0bqpjbjhsoorrjftta)
+- [Escalidraw](https://excalidraw.com/#json=6IooOx5zDVZ4OF7XXzyny,7vCx0bQpJBJHSoOrRJfTtA)
+
+<h2>💥 Defafios que enfrentamos... 🗡️</h2> 
+
+* 🛡️ Conflitos de código.
+* 🥊 Configuração de algumas ferramentas como JWT e os Testes.
+* ⚔️ Como popular o banco de dados.
+
+<h2>Considerações finais... ✍️</h2>
+
+<p>📚 Aprendemos a pensar/refletir mais ao nos deparar com um problema, no sentido de entender o que está causando aquela situação, ao invés de sair teclando sem um norte com o fim de achar a solução por pura tentativa, no C# isso não adianta. Isso nos ajudou a desenvolver soluções mais assertivas e até mais concisas.</p>
+
