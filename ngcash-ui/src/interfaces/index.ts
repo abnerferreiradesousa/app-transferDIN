@@ -5,6 +5,11 @@ export interface IAccount {
   user?: IUser
 }
 
+export interface ITransactionSerial extends Transaction {
+  debitedName: string
+  creditedName: string
+}
+
 export interface IUser {
   id?: number
   username: string
@@ -34,7 +39,7 @@ export type SimpleUser = {
 
 export type TransferData = {
   usernameCredited: string
-  value: number
+  value: string
 }
 
 export type TransactionData = {

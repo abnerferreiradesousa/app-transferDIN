@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IUserToken, Transaction, IUser } from '../interfaces';
+import { IUserToken, Transaction, IUser, ITransactionSerial, FilterInfo, TransferData } from '../interfaces';
 
 const URL = 'http://localhost:3001';
 
@@ -24,9 +24,45 @@ export const register = async (username: string, password: string)
 }
 
 export const fetchTransactions = async (token: string | null)
-: Promise<Transaction[]> => {
+: Promise<ITransactionSerial[]> => {
     const response = await axios.get(`${URL}/transaction`, { headers: {
         Authorization: token
     }})
+    return response.data.transactions;
+}
+
+export const fetchTransactionsByCashIn = async (token: string | null, dates?: FilterInfo)
+: Promise<Transaction[]> => {
+    const response = await axios({
+        data: dates, 
+        baseURL: `${URL}/transaction/cashin`, 
+        method: "GET", 
+        headers: {
+            Authorization: token
+        }})
+    return response.data.transactions;
+}
+
+export const fetchTransactionsByCashOut = async (token: string | null, dates?: FilterInfo)
+: Promise<Transaction[]> => {
+    const response = await axios({
+        data: dates, 
+        baseURL: `${URL}/transaction/cashout`, 
+        method: "GET", 
+        headers: {
+            Authorization: token
+        }})
+    return response.data.transactions;
+}
+
+export const transfer = async (token: string | null, transferData: TransferData)
+: Promise<Transaction[]> => {
+    const response = await axios({
+        data: transferData, 
+        baseURL: `${URL}/transaction`, 
+        method: "POST", 
+        headers: {
+            Authorization: token
+        }})
     return response.data.transactions;
 }
