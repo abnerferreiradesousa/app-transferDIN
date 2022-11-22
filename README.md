@@ -66,7 +66,8 @@
     - ☑️ *balance* atual do usuário;
     - ☑️ Seção voltada à realização de transferências para outros usuários NG a partir do *username* de quem sofrerá o *cash-in*;
     - ☑️ Tabela com os detalhes de todas as transações que o usuário participou;
-    - ❌ Mecanismo para filtrar a tabela por data de transação e/ou transações do tipo *cash-in*/*cash-out*;
+    - ❌ Mecanismo para filtrar a tabela por data de transação e
+        - ☑️ ou transações do tipo *cash-in*/*cash-out*;
     - ☑️ Botão para realizar o *log-out.*
 
 </details>
@@ -79,7 +80,7 @@
 <summary><strong>Como rodar?</strong></summary>
   
 1. Clone o repositório com o comando:
-  - `git@github.com:abnerferreiradesousa/app-transferDIN.git`;
+  - `git clone git@github.com:abnerferreiradesousa/app-transferDIN.git`;
     - Entre na pasta do repositório:
       - `cd app-transferDIN`
 2. Inicie a aplicação com o comando:
