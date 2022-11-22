@@ -85,7 +85,6 @@ export class TransactionRepository {
 	private readonly filterByDate = (transactions: ITransactionSerial[], dates: FilterInfo) => {
 		return transactions.filter((t: ITransactionSerial) => {
 			const newDate = t.createdAt.toLocaleDateString();
-			console.log(newDate, String(dates.dataStart))
 			if(String(dates.dataStart) <= newDate && String(dates.dataEnd) >= newDate) {
 				return t
 			}	

@@ -22,7 +22,6 @@ export class TransactionController {
 	};
 
 	public findByDate = async (req: MyRequest, res: Response) => {
-		// console.log(req.body)
 		const transactions = await this
 			.transactionService.findByDate(req.user as UserJWT, req.body as FilterInfo);
 		return res.status(StatusCodes.OK).json({transactions});

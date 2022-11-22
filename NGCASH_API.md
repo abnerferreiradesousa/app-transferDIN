@@ -1,7 +1,5 @@
 # Project: NGCASH_API
-# 📁 Collection: Account
-
-## OBS.: Os campos abaixo como body, token, headers são meramente ilustrativos e representam o que precisa ser passada a cada rota para que possa funcionar tudo corretamente.
+# 📁 Collection: Account 
 
 
 ## End-point: Account
@@ -60,7 +58,7 @@
 
 |Content-Type|Value|
 |---|---|
-|Authorization|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6IlBlcnJ5IiwiYWNjb3VudCI6eyJpZCI6MSwiYmFsYW5jZSI6MTAwfX0sImlhdCI6MTY2ODk0NzIyOCwiZXhwIjoxNjY5MDMzNjI4fQ.TNhQvBE6lbsZmreNLImoS_P1y_Erfj-4dtINW6GWTh0|
+|Authorization|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6IlBlcnJ5IiwiYWNjb3VudCI6eyJpZCI6MSwiYmFsYW5jZSI6ODB9fSwiaWF0IjoxNjY5MDgxNDM1LCJleHAiOjE2NjkxNjc4MzV9.43QaAkiwAl4VwMsKHZk1hjH0weea7AlXCR1qhqpw0NE|
 
 
 
@@ -75,15 +73,15 @@
 
 |Content-Type|Value|
 |---|---|
-|Authorization|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJ1c2VybmFtZSI6IktpY2siLCJhY2NvdW50Ijp7ImlkIjoyLCJiYWxhbmNlIjoxMDB9fSwiaWF0IjoxNjY4NzEwMzQxLCJleHAiOjE2Njg3OTY3NDF9.Di5yva6_tgeHh_HAoU3jzTBb6iXKEl-1TKnPp0ZuoHo|
+|Authorization|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6IlBlcnJ5IiwiYWNjb3VudCI6eyJpZCI6MSwiYmFsYW5jZSI6ODB9fSwiaWF0IjoxNjY5MDgxNDM1LCJleHAiOjE2NjkxNjc4MzV9.43QaAkiwAl4VwMsKHZk1hjH0weea7AlXCR1qhqpw0NE|
 
 
 ### Body (**raw**)
 
 ```json
 {
-  "dataStart": "2022-11-16",
-  "dataEnd": "2022-11-19"
+  "dataStart": "19/11/2022",
+  "dataEnd": "21/11/2022"
 }
 ```
 
@@ -99,13 +97,16 @@
 
 |Content-Type|Value|
 |---|---|
-|Authorization|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo0LCJ1c2VybmFtZSI6IkFzdHJvbmF1dCIsImFjY291bnQiOnsiaWQiOjQsImJhbGFuY2UiOjEwNn19LCJpYXQiOjE2Njg5ODY1ODksImV4cCI6MTY2OTA3Mjk4OX0.cI-PQJLHCAU5_aAYXXfvJuIPvE104WAPRW5muHUrCuA|
+|Authorization|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6IlBlcnJ5IiwiYWNjb3VudCI6eyJpZCI6MSwiYmFsYW5jZSI6ODB9fSwiaWF0IjoxNjY5MDgxNDM1LCJleHAiOjE2NjkxNjc4MzV9.43QaAkiwAl4VwMsKHZk1hjH0weea7AlXCR1qhqpw0NE|
 
 
 ### Body (**raw**)
 
 ```json
-
+{
+  "dataStart": "19/11/2022",
+  "dataEnd": "22/11/2022"
+}
 ```
 
 
@@ -120,15 +121,15 @@
 
 |Content-Type|Value|
 |---|---|
-|Authorization|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo0LCJ1c2VybmFtZSI6IkFzdHJvbmF1dCIsImFjY291bnQiOnsiaWQiOjQsImJhbGFuY2UiOjEwNn19LCJpYXQiOjE2Njg5ODY1ODksImV4cCI6MTY2OTA3Mjk4OX0.cI-PQJLHCAU5_aAYXXfvJuIPvE104WAPRW5muHUrCuA|
+|Authorization|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJ1c2VybmFtZSI6IlBlcnJ5IiwiYWNjb3VudCI6eyJpZCI6MSwiYmFsYW5jZSI6ODB9fSwiaWF0IjoxNjY5MDgxNDM1LCJleHAiOjE2NjkxNjc4MzV9.43QaAkiwAl4VwMsKHZk1hjH0weea7AlXCR1qhqpw0NE|
 
 
 ### Body (**raw**)
 
 ```json
 {
-  "dataStart": "2022-11-17",
-  "dataEnd": "2022-11-19"
+  "dataStart": "19/11/2022",
+  "dataEnd": "22/11/2022"
 }
 ```
 
@@ -146,7 +147,7 @@
 
 ```json
 {
-    "username": "Astronaut",
+    "username": "Perry",
     "password": "Ab123456"
 }
 ```
@@ -163,7 +164,7 @@
 
 ```json
 {
-    "username": "Kick",
+    "username": "Eagora",
     "password": "Ab123456"
 }
 ```
