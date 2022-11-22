@@ -2,7 +2,7 @@
 
 <h2>🥱 Introdução...</h2>
 
-<p>Este repositório contém uma aplicação fullstack, dockerizada de um sistema de transferência semelhante ao de um banco, desenvolvidos usando a plataforma Typescript, React com Next.js e PostgresSQL.</p>
+<p>Este repositório contém uma aplicação fullstack dockerizada, de um sistema de transferência semelhante ao de um banco, desenvolvidos usando Typescript, React com Next.js e PostgresSQL.</p>
 
 ![alt text](https://raw.githubusercontent.com/abnerferreiradesousa/app-transferDIN/main/images/app.png)
 
@@ -66,7 +66,8 @@
     - ☑️ *balance* atual do usuário;
     - ☑️ Seção voltada à realização de transferências para outros usuários NG a partir do *username* de quem sofrerá o *cash-in*;
     - ☑️ Tabela com os detalhes de todas as transações que o usuário participou;
-    - ❌ Mecanismo para filtrar a tabela por data de transação e/ou transações do tipo *cash-in*/*cash-out*;
+    - ❌ Mecanismo para filtrar a tabela por data de transação e
+        - ☑️ ou transações do tipo *cash-in*/*cash-out*;
     - ☑️ Botão para realizar o *log-out.*
 
 </details>
@@ -79,13 +80,13 @@
 <summary><strong>Como rodar?</strong></summary>
   
 1. Clone o repositório com o comando:
-  - `git@github.com:abnerferreiradesousa/app-transferDIN.git`;
+  - `git clone git@github.com:abnerferreiradesousa/app-transferDIN.git`;
     - Entre na pasta do repositório:
       - `cd app-transferDIN`
 2. Inicie a aplicação com o comando:
  - `docker-compose up -d --build`
-   - *Obs: Este comando será responsável por criar três cointainers docker: um para container para o banco de dados, o segundo para o backend e o último para o frontend.*
-3. Depois é só acessar a seguinte URL: http://localhost:3001/
+   - *Obs: Este comando será responsável por criar três cointainers docker: um para container para o banco de dados, o segundo para o backend e o último para o frontend. Estarão rodando nas portas 5432, 3001 e 3000, respectivamente, garanta que essas portas estejam livres para uso.*
+3. Depois é só acessar a seguinte URL: http://localhost:3000/
   - Caso queira testar a API via Postman, basta acessar o tópico <i>"Como usar cada rota?".</i>
 
   
@@ -99,6 +100,8 @@
 [Rotas Documentadas](https://github.com/abnerferreiradesousa/app-transferDIN/blob/main/NGCASH_API.md)
       
 </details>
+
+<i><strong>Dica:</strong> Os usuários Phineas, Ferb, Perry e Abner já estão cadastrados caso queira mandar uma grana pra eles ou pra mim 😊.</i>
 
 <h2>💥 Defafios que enfrentei... 🗡️</h2> 
 
