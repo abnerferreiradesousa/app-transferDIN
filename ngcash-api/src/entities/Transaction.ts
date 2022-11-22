@@ -10,7 +10,7 @@ export class Transaction {
 	value: number;
 
 	@CreateDateColumn({type: 'timestamp'})
-	reatedAt: Date;
+	createdAt: Date;
 
 	@Column()
 	debitedAccountId: number;

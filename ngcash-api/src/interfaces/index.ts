@@ -52,7 +52,15 @@ export interface ITransactionMaster extends Transaction {
 	account2: IAccountMaster;
 }
 
-export interface ITransactionSerial extends Transaction {
+export interface ITransaction {
+	id: number;
+	value: number;
+	createdAt: Date;
+	debitedAccountId: number;
+	creditedAccountId: number;
+}
+
+export interface ITransactionSerial extends ITransaction {
 	debitedName: string;
 	creditedName: string;
 }

@@ -10,8 +10,8 @@ export class UserRepository {
 		return this.userRepository.save(newUser);
 	};
 
-	public findByUsername = async (username: string): Promise<User | null> => {
+	public findByUsername = async (username: string): Promise<User> => {
 		const isUser = await this.userRepository.findOne({where: {username}});
-		return isUser;
+		return isUser as User;
 	};
 }

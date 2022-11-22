@@ -27,10 +27,13 @@ describe(" 1 - Testando get na rota /tasks", () => {
 
     before(async () => {
         sinon.stub(userRepo, "save").resolves(mockUser);
+        sinon.stub(userRepo, "create").resolves(mockUser);
     });
 
     after(() => {
         (userRepo.save as sinon.SinonStub).restore();
+        (userRepo.create as sinon.SinonStub).restore();
+
     });
 
     it("1 - rota retorna as tarefas rota /tasks", async () => {
@@ -38,6 +41,7 @@ describe(" 1 - Testando get na rota /tasks", () => {
             username: mockUser.username,
             password: mockUser.password,
         });
+        console.log(chaiHttpResponse.body)
 
         expect(chaiHttpResponse.status).to.be.equal(500);
         expect(chaiHttpResponse.body).to.be.eql(mockUser);

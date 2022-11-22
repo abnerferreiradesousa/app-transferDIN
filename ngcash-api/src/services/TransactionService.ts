@@ -1,5 +1,7 @@
 import {StatusCodes} from 'http-status-codes';
+import { Account } from '../entities/Account';
 import {Transaction} from '../entities/Transaction';
+import { User } from '../entities/User';
 import {type UserJWT} from '../helpers/generateJWT';
 import {errorMessage} from '../helpers/middlewares';
 import {type FilterInfo, type TransactionData, type TransferData} from '../interfaces';
@@ -68,10 +70,14 @@ export class TransactionService {
 		}
 
 		const senderAccount = await this
-			.accountRepository.findBalanceByUserLogged(senderInfo.id);
+			.accountRepository.findBalanceByUserLogged(senderInfo.id) as Account;
 
 		const recieverData = await this
-			.userRepository.findByUsername(recieverInfo.usernameCredited);
+			.userRepository.findByUsername(recieverInfo.usernameCredited) as User;
+			
+		if(recieverData == null) {
+			throw errorMessage(StatusCodes.NOT_FOUND, "Destinatário não encontrado!")
+		}
 
 		if (senderAccount.balance < recieverInfo.value) {
 			throw errorMessage(StatusCodes.CONFLICT, 'Saldo insuficiente!');

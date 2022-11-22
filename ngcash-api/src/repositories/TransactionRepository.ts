@@ -2,6 +2,7 @@ import {Between, LessThan, MoreThan} from 'typeorm';
 import {AppDataSource} from '../data-source';
 import {Transaction} from '../entities/Transaction';
 import {
+	ITransactionSerial,
 	type FilterInfo,
 	type ITransactionMaster,
 	type TransactionData,
@@ -38,56 +39,67 @@ export class TransactionRepository {
 	};
 
 	public findByDate = async (id: number, dates: FilterInfo) => {
-		const transactions = await this.transactionRepository
-			.createQueryBuilder('t')
-			.where('t.debitedAccountId = :id', {id})
-			.orWhere('t.creditedAccountId = :id', {id})
-			.andWhere('t.createdAt > :startDate', {startDate: new Date(dates.dataStart)})
-			.andWhere('t.createdAt < :endDate', {endDate: new Date(dates.dataEnd)})
-			.getMany();
+		// const transactions = await this.transactionRepository
+		// 	.createQueryBuilder('t')
+		// 	.where('t.debitedAccountId = :id', {id})
+		// 	.orWhere('t.creditedAccountId = :id', {id})
+		// 	.andWhere('t.createdAt > :startDate', {startDate: new Date(dates.dataStart)})
+		// 	.andWhere('t.createdAt < :endDate', {endDate: new Date(dates.dataEnd)})
+		// 	.getMany();
 
-		return transactions;
+		const transactions = await this.findTransactionsByUser(id);
+
+		return this.filterByDate(transactions, dates);
 	};
 
 	public findByCashOut = async (id: number, dates: FilterInfo) => {
-		// If(dates !== null) {
-		//     transactions = await this.transactionRepository
-		//     .createQueryBuilder('t')
-		//     .where('t.debitedAccountId = :id', {id})
-		//     .andWhere('t.createdAt > :startDate',
-		//         {startDate: new Date(dates.dataStart || new Date(1111, 11, 11))})
-		//     .andWhere('t.createdAt < :endDate',
-		//         {endDate: new Date(dates.dataEnd || new Date())})
-		//     .getMany();
-		// }
-
-		const transactions = await this.transactionRepository
+		let transactions = await this.transactionRepository
 			.find({where: {debitedAccountId: id}, select, relations, order: {
 				createdAt: 'DESC',
 			}});
 
-		return this.serialize(transactions);
+		if(Object.keys(dates).length === 0) {
+			return this.serialize(transactions);
+		} else {
+			let serialized = this.serialize(transactions);
+			return this.filterByDate(serialized, dates)
+		}
 	};
 
 	public findByCashIn = async (id: number, dates: FilterInfo) => {
-		// If(dates !== null) {
-		// transactions = await this.transactionRepository
-		// .createQueryBuilder('t')
-		// .where('t.creditedAccountId = :id', {id})
-		// .andWhere('t.createdAt > :startDate',
-		//     {startDate: new Date(dates.dataStart || new Date(1111, 11, 11))})
-		// .andWhere('t.createdAt < :endDate',
-		//     {endDate: new Date(dates.dataEnd || new Date())})
-		// .getMany();
+		// if(dates !== null) {
+		// 	transactions = await this.transactionRepository
+		// 		.createQueryBuilder('t')
+		// 		.where('t.creditedAccountId = :id', {id})
+		// 		.andWhere('t.createdAt > :startDate',
+		// 			{startDate: new Date(dates.dataStart || new Date(1111, 11, 11))})
+		// 		.andWhere('t.createdAt < :endDate',
+		// 			{endDate: new Date(dates.dataEnd || new Date())})
+		// 		.getMany();
 		// }
 
-		const transactions = await this.transactionRepository
+		let transactions = await this.transactionRepository
 			.find({where: {creditedAccountId: id}, select, relations, order: {
 				createdAt: 'DESC',
 			}});
 
-		return this.serialize(transactions);
+		if(Object.keys(dates).length === 0) {
+			return this.serialize(transactions);
+		} else {
+			let serialized = this.serialize(transactions);
+			return this.filterByDate(serialized, dates)
+		}
 	};
+
+	private readonly filterByDate = (transactions: ITransactionSerial[], dates: FilterInfo) => {
+		return transactions.filter((t: ITransactionSerial) => {
+			const newDate = new Date(t.createdAt).toLocaleDateString();
+			console.log(String(dates.dataStart), newDate)
+			if(String(dates.dataStart) <= newDate && String(dates.dataEnd) >= newDate) {
+				return t
+			}	
+		})
+	}
 
 	private readonly serialize = (transactions: ITransactionMaster[]) => transactions
 		.map((t: ITransactionMaster) => ({

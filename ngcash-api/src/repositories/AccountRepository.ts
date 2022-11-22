@@ -5,7 +5,8 @@ export class AccountRepository {
 	private readonly accountRepository = AppDataSource.getRepository(Account);
 
 	public findBalanceByUserLogged = async (id: number)
-	: Promise<Account | null> => this.accountRepository.findOne({where: {id}});
+	: Promise<Account> => this.accountRepository
+		.findOne({ where: { id } }) as unknown as Account;
 
 	public incrementBalance = async (id: number, value: number): Promise<Account> => {
 		await this.accountRepository.increment({id}, 'balance', value);

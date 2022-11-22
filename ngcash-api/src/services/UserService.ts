@@ -10,6 +10,8 @@ export class UserService {
 	private readonly userRepository = new UserRepository();
 
 	public create = async (user: SimpleUser): Promise<User> => {
+		console.log(user);
+		
 		this.validLength(user.username, 3);
 
 		const pattern = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=[^0-9]*[0-9]).{8,}$/;
