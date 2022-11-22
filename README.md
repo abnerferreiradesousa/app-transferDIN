@@ -84,8 +84,8 @@
       - `cd app-transferDIN`
 2. Inicie a aplicação com o comando:
  - `docker-compose up -d --build`
-   - *Obs: Este comando será responsável por criar três cointainers docker: um para container para o banco de dados, o segundo para o backend e o último para o frontend. Estarão rodando nas portas 5432, 3000 e 3001, respectivamente, garanta que essas portas estejam livres para uso.*
-3. Depois é só acessar a seguinte URL: http://localhost:3001/
+   - *Obs: Este comando será responsável por criar três cointainers docker: um para container para o banco de dados, o segundo para o backend e o último para o frontend. Estarão rodando nas portas 5432, 3001 e 3000, respectivamente, garanta que essas portas estejam livres para uso.*
+3. Depois é só acessar a seguinte URL: http://localhost:3000/
   - Caso queira testar a API via Postman, basta acessar o tópico <i>"Como usar cada rota?".</i>
 
   
