@@ -54,8 +54,8 @@ export type TransactionData = {
 };
 
 export type FilterInfo = {
-	dataStart: Date;
-	dataEnd: Date;
+	dataStart: string;
+	dataEnd: string;
 	transactionType?: string;
 };
 

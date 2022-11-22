@@ -22,6 +22,7 @@ export default function Form({title, pathRoute, linkTitle, handleClick}: FomrPro
                     Username
 					<input
 						type='text'
+						placeholder='Phineas'
 						onChange={e => {
 							setName(e.target.value);
 						}}
@@ -32,6 +33,7 @@ export default function Form({title, pathRoute, linkTitle, handleClick}: FomrPro
                     Password
 					<input
 						type='text'
+						placeholder='Ph123456'
 						onChange={e => {
 							setPassword(e.target.value);
 						}}

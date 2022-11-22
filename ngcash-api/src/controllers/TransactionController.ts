@@ -1,7 +1,7 @@
 import {type Response} from 'express';
 import {StatusCodes} from 'http-status-codes';
 import {type UserJWT} from '../helpers/generateJWT';
-import {type MyRequest} from '../interfaces';
+import {FilterInfo, type MyRequest} from '../interfaces';
 import {TransactionService} from '../services/TransactionService';
 
 export class TransactionController {
@@ -21,10 +21,9 @@ export class TransactionController {
 		return res.status(StatusCodes.OK).json({transactions});
 	};
 
-	public findTransactionsByDate = async (req: MyRequest, res: Response) => {
+	public findByDate = async (req: MyRequest, res: Response) => {
 		const transactions = await this
-			.transactionService.findTransactionsByDate(req.user as UserJWT, req.body);
-
+			.transactionService.findByDate(req.user as UserJWT, req.body as FilterInfo);
 		return res.status(StatusCodes.OK).json({transactions});
 	};
 

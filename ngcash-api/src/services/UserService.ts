@@ -1,5 +1,4 @@
 import {StatusCodes} from 'http-status-codes';
-import {type User} from '../entities/User';
 import generateJWT from '../helpers/generateJWT';
 import {errorMessage} from '../helpers/middlewares';
 import {compareHash, generateHash} from '../helpers/passwordHash';
@@ -9,8 +8,7 @@ import {UserRepository} from '../repositories/UserRepository';
 export class UserService {
 	private readonly userRepository = new UserRepository();
 
-	public create = async (user: SimpleUser): Promise<User> => {
-		console.log(user);
+	public create = async (user: SimpleUser): Promise<IUserToken> => {
 		
 		this.validLength(user.username, 3);
 
@@ -26,8 +24,11 @@ export class UserService {
 
 		user.account = {balance: 100};
 		const passwordHash = await generateHash(user.password);
-
-		return this.userRepository.create({...user, password: passwordHash});
+		const userCreated = await this.userRepository.create({...user, password: passwordHash });
+		return {
+			...userCreated,
+			token: generateJWT(userCreated),
+		}
 	};
 
 	public login = async (user: UserLogin): Promise<IUserToken> => {

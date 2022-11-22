@@ -42,7 +42,7 @@ export class TransactionService {
 		return transactions;
 	};
 
-	public findTransactionsByDate = async (user: UserJWT, filterInfo: FilterInfo) => {
+	public findByDate = async (user: UserJWT, filterInfo: FilterInfo) => {
 		const transactions = await this.transactionRepository
 			.findByDate(user.id, filterInfo);
 		return transactions;

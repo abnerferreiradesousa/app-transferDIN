@@ -3,9 +3,10 @@ import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import BasicTable from '../components/BasicTable';
 import Header from '../components/Header';
-import {type ITransactionSerial} from '../interfaces';
+import {FilterInfo, type ITransactionSerial} from '../interfaces';
 import {selectUser, setAccount} from '../redux/slices/userSlice';
 import {
+	fetchByDate,
 	fetchTransactions,
 	fetchTransactionsByCashIn,
 	fetchTransactionsByCashOut,
@@ -22,6 +23,8 @@ export default function Main() {
 	const [value, setValue] = useState('');
 	const [recieverName, setRecieverName] = useState('');
 	const [wasTransfered, setWasTransfered] = useState(0);
+	const [dataStart, setDataStart] = useState<string>("");
+	const [dataEnd, setDataEnd] = useState<string>("");
 	const [transactions, setTransactions] = useState<ITransactionSerial[]>([]);
 	const [transfersBackup, setTransfersBackup] = useState<ITransactionSerial[]>([]);
 	const {account, username, token} = useSelector(selectUser);
@@ -58,6 +61,19 @@ export default function Main() {
 		}
 	};
 
+	const handleFilterDate = async () => {
+		const dates: FilterInfo = {
+			dataStart: dataStart.replaceAll("-", "/") || new Date(1111, 11, 11).toLocaleDateString(),
+			dataEnd: dataEnd.replaceAll("-", "/") || new Date().toLocaleDateString(),
+		};
+		console.log(dates)
+		const res = await fetchByDate(token, dates);
+		
+		setTransactions(res);
+
+	}
+
+
 	useEffect(() => {
 		const fetch = async () => {
 			try {
@@ -87,6 +103,7 @@ export default function Main() {
 					<input
 						type='text'
 						id='reciever'
+						placeholder='Agente P'
 						value={recieverName}
 						onChange={(e) => setRecieverName(e.target.value)}
 					/>
@@ -96,6 +113,7 @@ export default function Main() {
 					<input
 						type='text'
 						id='value'
+						placeholder='100'
 						value={value}
 						onChange={(e) => setValue(e.target.value)}
 					/>
@@ -117,6 +135,7 @@ export default function Main() {
 							<input
 								type='date'
 								name='startDate'
+								onChange={(e) => setDataStart(e.target.value)}
 								className={styles.input_date}
 							/>
 						</label>
@@ -125,6 +144,7 @@ export default function Main() {
 							<input
 								type='date'
 								name='endDate'
+								onChange={(e) => setDataEnd(e.target.value)}
 								className={styles.input_date} 
 							/>
 						</label>
@@ -138,6 +158,11 @@ export default function Main() {
 							onClick={fetchCashOut}
 							className={styles.button}
 						>Enviadas</button>
+						<button
+							type='button'
+							onClick={handleFilterDate}
+							className={styles.button}
+						>Filtrar</button>
 					</section>
 				</section>
 				<br />

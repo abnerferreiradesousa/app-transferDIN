@@ -14,12 +14,12 @@ export const login = async (username: string, password: string): Promise<IUserTo
 	try {
 		const response = await axios.post(`${URL}/login`, {username, password});
 		return response.data.userLogged;
-	} catch (err) {
-		console.log(err);
+	} catch (err:any) {
+		throw new Error(err.response.data.message);
 	}
 };
 
-export const register = async (username: string, password: string): Promise<IUser | void> => {
+export const register = async (username: string, password: string): Promise<IUserToken | void> => {
 	try {
 		const response = await axios.post(`${URL}/user`, {username, password});
 		return response.data.user;
@@ -79,3 +79,17 @@ export const getBalance = async (token: string | undefined): Promise<IAccount> =
 		}});
 	return response.data.account;
 };
+
+export const fetchByDate = async (token: string | undefined, dates: FilterInfo)
+: Promise<ITransactionSerial[]> => {
+	const response = await axios({
+		data: dates,
+		baseURL: `${URL}/transaction/date`,
+		method: 'GET',
+		headers: {
+			Authorization: token,
+		}});
+	return response.data.transactions;
+};
+
+

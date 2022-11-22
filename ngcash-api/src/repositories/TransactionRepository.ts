@@ -1,4 +1,3 @@
-import {Between, LessThan, MoreThan} from 'typeorm';
 import {AppDataSource} from '../data-source';
 import {Transaction} from '../entities/Transaction';
 import {
@@ -39,16 +38,8 @@ export class TransactionRepository {
 	};
 
 	public findByDate = async (id: number, dates: FilterInfo) => {
-		// const transactions = await this.transactionRepository
-		// 	.createQueryBuilder('t')
-		// 	.where('t.debitedAccountId = :id', {id})
-		// 	.orWhere('t.creditedAccountId = :id', {id})
-		// 	.andWhere('t.createdAt > :startDate', {startDate: new Date(dates.dataStart)})
-		// 	.andWhere('t.createdAt < :endDate', {endDate: new Date(dates.dataEnd)})
-		// 	.getMany();
-
+		
 		const transactions = await this.findTransactionsByUser(id);
-
 		return this.filterByDate(transactions, dates);
 	};
 
@@ -94,7 +85,6 @@ export class TransactionRepository {
 	private readonly filterByDate = (transactions: ITransactionSerial[], dates: FilterInfo) => {
 		return transactions.filter((t: ITransactionSerial) => {
 			const newDate = new Date(t.createdAt).toLocaleDateString();
-			console.log(String(dates.dataStart), newDate)
 			if(String(dates.dataStart) <= newDate && String(dates.dataEnd) >= newDate) {
 				return t
 			}	
