@@ -101,7 +101,7 @@
       
 </details>
 
-<i><strong>Dica:</strong> Pra facilitar os usuários Phineas, Ferb, Perry e Abner já estão cadastrados caso queira mandar uma grana pra eles ou pra mim 😊.</i>
+<i><strong>Dica:</strong> Os usuários Phineas, Ferb, Perry e Abner já estão cadastrados caso queira mandar uma grana pra eles ou pra mim 😊.</i>
 
 <h2>💥 Defafios que enfrentei... 🗡️</h2> 
 
