@@ -10,7 +10,8 @@ import {
 
 const URL = 'http://localhost:3001';
 
-export const login = async (username: string, password: string): Promise<IUserToken | void> => {
+export const login = async (username: string, password: string)
+: Promise<IUserToken | void> => {
 	try {
 		const response = await axios.post(`${URL}/login`, {username, password});
 		return response.data.userLogged;
@@ -19,7 +20,8 @@ export const login = async (username: string, password: string): Promise<IUserTo
 	}
 };
 
-export const register = async (username: string, password: string): Promise<IUserToken | void> => {
+export const register = async (username: string, password: string)
+: Promise<IUserToken | void> => {
 	try {
 		const response = await axios.post(`${URL}/user`, {username, password});
 		return response.data.user;
@@ -28,10 +30,11 @@ export const register = async (username: string, password: string): Promise<IUse
 	}
 };
 
-export const fetchTransactions = async (token: string | undefined): Promise<ITransactionSerial[]> => {
+export const fetchTransactions = async (token: string | undefined)
+: Promise<ITransactionSerial[]> => {
 	const response = await axios.get(`${URL}/transaction`, {headers: {
 		Authorization: token,
-	}});
+		}});
 	return response.data.transactions;
 };
 
@@ -48,7 +51,8 @@ export const fetchTransactionsByCashIn = async (
 	return response.data.transactions;
 };
 
-export const fetchTransactionsByCashOut = async (token: string | undefined, dates?: FilterInfo): Promise<ITransactionSerial[]> => {
+export const fetchTransactionsByCashOut = async (token: string | undefined, dates?: FilterInfo)
+: Promise<ITransactionSerial[]> => {
 	const response = await axios({
 		data: dates,
 		baseURL: `${URL}/transaction/cashout`,
@@ -59,7 +63,8 @@ export const fetchTransactionsByCashOut = async (token: string | undefined, date
 	return response.data.transactions;
 };
 
-export const transfer = async (token: string | undefined, transferData: TransferData): Promise<Transaction[]> => {
+export const transfer = async (token: string | undefined, transferData: TransferData)
+: Promise<Transaction[]> => {
 	const response = await axios({
 		data: transferData,
 		baseURL: `${URL}/transaction`,
@@ -85,7 +90,7 @@ export const fetchByDate = async (token: string | undefined, dates: FilterInfo)
 	const response = await axios({
 		data: dates,
 		baseURL: `${URL}/transaction/date`,
-		method: 'GET',
+		method: 'POST',
 		headers: {
 			Authorization: token,
 		}});

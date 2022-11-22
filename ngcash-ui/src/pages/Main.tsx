@@ -61,16 +61,17 @@ export default function Main() {
 		}
 	};
 
-	const handleFilterDate = async () => {
-		const dates: FilterInfo = {
-			dataStart: dataStart.replaceAll("-", "/") || new Date(1111, 11, 11).toLocaleDateString(),
-			dataEnd: dataEnd.replaceAll("-", "/") || new Date().toLocaleDateString(),
-		};
-		console.log(dates)
-		const res = await fetchByDate(token, dates);
-		
-		setTransactions(res);
 
+	const handleFilterDate = async () => {
+		const checkStartDate = dataStart || new Date(1950, 7, 6).toLocaleDateString();
+		const dates: FilterInfo = {
+			dataStart: new Date(checkStartDate.replaceAll("-", "/"))
+				.toLocaleDateString("pt-BR"),
+			dataEnd: new Date(dataEnd.replaceAll("-", "/"))
+				.toLocaleDateString("pt-BR") || new Date().toLocaleDateString(),
+		};
+		const res = await fetchByDate(token, dates);
+		setTransactions(res);
 	}
 
 

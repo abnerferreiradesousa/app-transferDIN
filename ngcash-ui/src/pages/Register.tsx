@@ -17,7 +17,6 @@ export default function Register() {
 			alert("Senha deve conter no mínimo 8 caracteres, 1 letra maiúscula e 1 letra minúscula!")
 		} else {
 			const userCreated = await register(name, password);
-			console.log(userCreated)
 			if (userCreated) {
 				localStorage.setItem('token', userCreated.token);
 				dispatch(setUser(userCreated))
