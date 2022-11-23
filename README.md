@@ -53,8 +53,11 @@
 - ☑️ Todo usuário logado (ou seja, que apresente um token válido) deverá ser capaz de realizar um *cash-out* informando o *username* do usuário que sofrerá o *cash-in*), caso apresente *balance* suficiente para isso. Atente-se ao fato de que um usuário não deverá ter a possibilidade de realizar uma transferência para si mesmo.
 - ☑️ Toda nova transação bem-sucedida deverá ser registrada na tabela **Transactions**. Em casos de falhas transacionais, a tabela **Transactions** não deverá ser afetada.
 - ☑️ Todo usuário logado (ou seja, que apresente um token válido) deverá ser capaz de visualizar as transações financeiras (*cash-out* e *cash-in*) que participou. Caso o usuário não tenha participado de uma determinada transação, ele nunca poderá ter acesso à ela.
-- ❌ Todo usuário logado (ou seja, que apresente um token válido) deverá ser capaz de filtrar as transações financeiras que participou por:
-    - ❌ Data de realização da transação e/ou
+- ☑️ Todo usuário logado (ou seja, que apresente um token válido) deverá ser capaz de filtrar as transações financeiras que participou por:
+    - ☑️ Data de realização da transação OU❌
+        - ☑️ Transações de *cash-out;*
+        - ☑️ Transações de *cash-in.*
+    - ☑️ Data de realização da transação E
         - ☑️ Transações de *cash-out;*
         - ☑️ Transações de *cash-in.*
 
