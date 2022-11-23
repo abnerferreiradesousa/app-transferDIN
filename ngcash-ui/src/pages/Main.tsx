@@ -29,14 +29,16 @@ export default function Main() {
 	const [transfersBackup, setTransfersBackup] = useState<ITransactionSerial[]>([]);
 	const {account, username, token} = useSelector(selectUser);
 	const dispatch = useDispatch();
+	const [sendIsSelected, setSendIsSelected] = useState(false);
+	const [recieveIsSelected, setRecieveIsSelected] = useState(false);
 
-	const fetchCashIn = async () => {
-		const transfers = await fetchTransactionsByCashIn(token);
+	const fetchCashIn = async (dates: FilterInfo) => {
+		const transfers = await fetchTransactionsByCashIn(token, dates);
 		setTransactions(transfers);
 	};
 
-	const fetchCashOut = async () => {
-		const transfers = await fetchTransactionsByCashOut(token);
+	const fetchCashOut = async (dates: FilterInfo) => {
+		const transfers = await fetchTransactionsByCashOut(token, dates);
 		setTransactions(transfers);
 	};
 
@@ -63,15 +65,26 @@ export default function Main() {
 
 
 	const handleFilterDate = async () => {
-		const checkStartDate = dataStart || new Date(1950, 7, 6).toLocaleDateString();
+
 		const dates: FilterInfo = {
-			dataStart: new Date(checkStartDate.replaceAll("-", "/"))
-				.toLocaleDateString("pt-BR"),
-			dataEnd: new Date(dataEnd.replaceAll("-", "/"))
-				.toLocaleDateString("pt-BR") || new Date().toLocaleDateString(),
+			dataStart: dataStart ? new Date(dataStart.replaceAll("-", "/"))
+			.toLocaleDateString("pt-BR") : new Date(1950, 7, 6).toLocaleDateString(),
+			dataEnd: dataEnd ? new Date(dataEnd.replaceAll("-", "/"))
+			.toLocaleDateString("pt-BR") : new Date().toLocaleDateString(),
 		};
-		const res = await fetchByDate(token, dates);
-		setTransactions(res);
+		// Filtro por data.
+		if(!sendIsSelected && !recieveIsSelected || sendIsSelected && recieveIsSelected) {
+			const res = await fetchByDate(token, dates);
+			setTransactions(res);
+		}
+		// Filtro por cashout e/ou data.
+		if(sendIsSelected) {
+			await fetchCashOut(dates);
+		}
+		// Filtro por cashin e/ou data.
+		if(recieveIsSelected) {
+			await fetchCashIn(dates);
+		}
 	}
 
 
@@ -149,16 +162,19 @@ export default function Main() {
 								className={styles.input_date} 
 							/>
 						</label>
-						<button
-							type='button'
-							onClick={fetchCashIn}
-							className={styles.button}
-						>Recebidas</button>
-						<button
-							type='button'
-							onClick={fetchCashOut}
-							className={styles.button}
-						>Enviadas</button>
+						<label htmlFor="">
+							<input
+								type='checkbox'
+								onClick={() => setSendIsSelected(!sendIsSelected)}
+							/>Recebidas
+						</label>
+						<label htmlFor="">
+							<input
+								type='checkbox'
+								onClick={() => setRecieveIsSelected(!recieveIsSelected)}
+								/>
+								Enviadas
+						</label>
 						<button
 							type='button'
 							onClick={handleFilterDate}

@@ -11,7 +11,8 @@
     "migration:generate": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:generate ./src/migrations/default",
     "migration:run": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:run",
     "schema:drop": "typeorm-ts-node-commonjs -d ./src/data-source.ts schema:drop",
-    "schema:sync": "typeorm-ts-node-commonjs -d ./src/data-source.ts schema:sync"
+    "schema:sync": "typeorm-ts-node-commonjs -d ./src/data-source.ts schema:sync",
+    "db:reset": "npm run schema:drop && npm run schema:sync"
   },
   "keywords": [],
   "author": "",

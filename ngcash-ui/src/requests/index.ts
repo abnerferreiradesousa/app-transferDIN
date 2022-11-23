@@ -44,19 +44,20 @@ export const fetchTransactionsByCashIn = async (
 	const response = await axios({
 		data: dates,
 		baseURL: `${URL}/transaction/cashin`,
-		method: 'GET',
+		method: 'POST',
 		headers: {
 			Authorization: token,
 		}});
 	return response.data.transactions;
 };
 
-export const fetchTransactionsByCashOut = async (token: string | undefined, dates?: FilterInfo)
+export const fetchTransactionsByCashOut = async (
+	token: string | undefined, dates?: FilterInfo)
 : Promise<ITransactionSerial[]> => {
 	const response = await axios({
 		data: dates,
 		baseURL: `${URL}/transaction/cashout`,
-		method: 'GET',
+		method: 'POST',
 		headers: {
 			Authorization: token,
 		}});

@@ -1,3 +1,4 @@
+import { jar } from 'superagent';
 import {AppDataSource} from '../data-source';
 import {Transaction} from '../entities/Transaction';
 import {
@@ -38,7 +39,6 @@ export class TransactionRepository {
 	};
 
 	public findByDate = async (id: number, dates: FilterInfo) => {
-		
 		const transactions = await this.findTransactionsByUser(id);
 		return this.filterByDate(transactions, dates);
 	};
@@ -58,17 +58,6 @@ export class TransactionRepository {
 	};
 
 	public findByCashIn = async (id: number, dates: FilterInfo) => {
-		// if(dates !== null) {
-		// 	transactions = await this.transactionRepository
-		// 		.createQueryBuilder('t')
-		// 		.where('t.creditedAccountId = :id', {id})
-		// 		.andWhere('t.createdAt > :startDate',
-		// 			{startDate: new Date(dates.dataStart || new Date(1111, 11, 11))})
-		// 		.andWhere('t.createdAt < :endDate',
-		// 			{endDate: new Date(dates.dataEnd || new Date())})
-		// 		.getMany();
-		// }
-
 		let transactions = await this.transactionRepository
 			.find({where: {creditedAccountId: id}, select, relations, order: {
 				createdAt: 'DESC',
@@ -84,8 +73,13 @@ export class TransactionRepository {
 
 	private readonly filterByDate = (transactions: ITransactionSerial[], dates: FilterInfo) => {
 		return transactions.filter((t: ITransactionSerial) => {
-			const newDate = t.createdAt.toLocaleDateString();
-			if(String(dates.dataStart) <= newDate && String(dates.dataEnd) >= newDate) {
+			const { dataEnd, dataStart } = dates;
+			const newDate = new Date(t.createdAt);
+			const data1 = String(dataStart).split("/");
+			const data2 = String(dataEnd).split("/");
+			const start = new Date(Number(data1[2]), Number(data1[1]), Number(data1[0]));
+			const end = new Date(Number(data2[2]), Number(data2[1]), Number(data2[0]));
+			if(newDate >= start && newDate <= end) {
 				return t
 			}	
 		})
