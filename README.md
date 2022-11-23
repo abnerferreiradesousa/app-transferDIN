@@ -108,7 +108,7 @@
 
 <h2>💥 Defafios que enfrentei... 🗡️</h2> 
 
-* 🗡️ Trabalhar com datas foi difícil, embora tenha me esforçado para entender os problemas que estavam ocorrendo com relação a filtragem por data, não consegui concluir tal requisito, continuo estudando afim de concluir esse requisito e entender melhor sobre manipulação de datas. 
+* 🗡️ Trabalhar com datas foi difícil, embora tenha me esforçado para entender os problemas que estavam ocorrendo com relação a filtragem por data, não consegui concluir tal requisito, continuo estudando afim de concluí-lo e entender melhor sobre manipulação de datas. 
 * 🛡️ Dockerizar a aplicação.
 * 🥊 Aprender o TypeORM do zero.
 * ⚔️ Configuração do PostgreSQL.
