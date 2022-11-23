@@ -54,10 +54,10 @@
 - ☑️ Toda nova transação bem-sucedida deverá ser registrada na tabela **Transactions**. Em casos de falhas transacionais, a tabela **Transactions** não deverá ser afetada.
 - ☑️ Todo usuário logado (ou seja, que apresente um token válido) deverá ser capaz de visualizar as transações financeiras (*cash-out* e *cash-in*) que participou. Caso o usuário não tenha participado de uma determinada transação, ele nunca poderá ter acesso à ela.
 - ☑️ Todo usuário logado (ou seja, que apresente um token válido) deverá ser capaz de filtrar as transações financeiras que participou por:
-    - ☑️ Data de realização da transação OU❌
+    - ☑️ ❌ Data de realização da transação OU
         - ☑️ Transações de *cash-out;*
         - ☑️ Transações de *cash-in.*
-    - ☑️ Data de realização da transação E
+    - ☑️ ❌ Data de realização da transação E
         - ☑️ Transações de *cash-out;*
         - ☑️ Transações de *cash-in.*
 
@@ -108,6 +108,7 @@
 
 <h2>💥 Defafios que enfrentei... 🗡️</h2> 
 
+* 🗡️ Trabalhar com datas foi difícil, embora tenha me esforçado para entender os problemas que estavam ocorrendo com relação a filtragem por data, não consegui concluir tal requisito, continuo estudando afim de concluir esse requisito e entender melhor sobre manipulação de datas. 
 * 🛡️ Dockerizar a aplicação.
 * 🥊 Aprender o TypeORM do zero.
 * ⚔️ Configuração do PostgreSQL.
@@ -120,3 +121,10 @@
   Entendi também que devo me planejar melhor quanto ao que o frontend precisa para funcionar de forma integrada e eficiente, porque por vezes precisei alterar algo no backend que já estava construído para se adequar ao frontend.
 </p>
 
+<h2>🥷 Próximos passos...</h2>
+
+* <p>👉 Deploy de toda a aplicação.</p>
+
+* <p>👉 Desenvolver testes unitários, de integração e End-2-End.</p>
+
+* <p>👉 Converage Tests</p>
